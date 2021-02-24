@@ -148,6 +148,10 @@
       <Project>{5072edc5-84bc-45e5-9ab0-8dd79ec2a3e1}</Project>
       <Name>AircraftFactoryBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AircraftFactoryFileImplement\AircraftFactoryFileImplement.csproj">
+      <Project>{75f88e7a-d7a1-4812-bd6e-9d39f268329b}</Project>
+      <Name>AircraftFactoryFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AirCraftFactoryListImplement\AirCraftFactoryListImplement.csproj">
       <Project>{1266cd70-3765-4712-ade9-e6fded509add}</Project>
       <Name>AirCraftFactoryListImplement</Name>

@@ -111,11 +111,11 @@ namespace AirCraftFactoryListImplement.Implements
         private OrderViewModel CreateModel(Order order)
         {
             string planeName = null;
-            foreach (var document in source.Products)
+            foreach (var item in source.Products)
             {
-                if (document.Id == order.ProductId)
+                if (item.Id == order.ProductId)
                 {
-                    planeName = document.ProductName;
+                    planeName = item.ProductName;
                 }
             }
             return new OrderViewModel
