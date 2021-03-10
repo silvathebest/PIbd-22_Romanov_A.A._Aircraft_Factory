@@ -31,7 +31,7 @@ namespace AircraftFactoryView
                     PlaneViewModel view = logic.Read(new PlaneBindingModel { Id = id.Value })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ProductName;
+                        textBoxName.Text = view.PlaneName;
                         textBoxPrice.Text = view.Price.ToString();
                         planeComponents = view.PlaneComponents;
                         LoadData();
@@ -142,7 +142,7 @@ namespace AircraftFactoryView
                 logic.CreateOrUpdate(new PlaneBindingModel
                 {
                     Id = id,
-                    ProductName = textBoxName.Text,
+                    PlaneName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
                     PlaneComponents = planeComponents
                 });

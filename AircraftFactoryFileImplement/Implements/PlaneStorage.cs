@@ -18,13 +18,13 @@ namespace AircraftFactoryFileImplement.Implements
         }
         public List<PlaneViewModel> GetFullList()
         {
-            return source.Products.Select(CreateModel).ToList();
+            return source.Plane.Select(CreateModel).ToList();
         }
         public List<PlaneViewModel> GetFilteredList(PlaneBindingModel model)
         {
             if (model == null) return null;
 
-            return source.Products.Where(rec => rec.ProductName.Contains(model.ProductName))
+            return source.Plane.Where(rec => rec.PlaneName.Contains(model.PlaneName))
             .Select(CreateModel)
             .ToList();
         }
@@ -32,23 +32,23 @@ namespace AircraftFactoryFileImplement.Implements
         {
             if (model == null) return null;
 
-            var product = source.Products
-            .FirstOrDefault(rec => rec.ProductName == model.ProductName || rec.Id == model.Id);
-            return product != null ? CreateModel(product) : null;
+            var plane = source.Plane
+            .FirstOrDefault(rec => rec.PlaneName == model.PlaneName || rec.Id == model.Id);
+            return plane != null ? CreateModel(plane) : null;
         }
         public void Insert(PlaneBindingModel model)
         {
-            int maxId = source.Products.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
+            int maxId = source.Plane.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
             var element = new Plane
             {
                 Id = maxId + 1,
-                ProductComponents = new Dictionary<int, int>()
+                PlaneComponents = new Dictionary<int, int>()
             };
-            source.Products.Add(CreateModel(model, element));
+            source.Plane.Add(CreateModel(model, element));
         }
         public void Update(PlaneBindingModel model)
         {
-            var element = source.Products.FirstOrDefault(rec => rec.Id == model.Id);
+            var element = source.Plane.FirstOrDefault(rec => rec.Id == model.Id);
 
             if (element == null) throw new Exception("Элемент не найден");
             
@@ -56,10 +56,10 @@ namespace AircraftFactoryFileImplement.Implements
         }
         public void Delete(PlaneBindingModel model)
         {
-            Plane element = source.Products.FirstOrDefault(rec => rec.Id == model.Id);
+            Plane element = source.Plane.FirstOrDefault(rec => rec.Id == model.Id);
             if (element != null)
             {
-                source.Products.Remove(element);
+                source.Plane.Remove(element);
             }
             else
             {
@@ -68,26 +68,26 @@ namespace AircraftFactoryFileImplement.Implements
         }
         private Plane CreateModel(PlaneBindingModel model, Plane plane)
         {
-            plane.ProductName = model.ProductName;
+            plane.PlaneName = model.PlaneName;
             plane.Price = model.Price;
             // удаляем убранные
-            foreach (var key in plane.ProductComponents.Keys.ToList())
+            foreach (var key in plane.PlaneComponents.Keys.ToList())
             {
                 if (!model.PlaneComponents.ContainsKey(key))
                 {
-                    plane.ProductComponents.Remove(key);
+                    plane.PlaneComponents.Remove(key);
                 }
             }
             // обновляем существуюущие и добавляем новые
             foreach (var component in model.PlaneComponents)
             {
-                if (plane.ProductComponents.ContainsKey(component.Key))
+                if (plane.PlaneComponents.ContainsKey(component.Key))
                 {
-                    plane.ProductComponents[component.Key] = model.PlaneComponents[component.Key].Item2;
+                    plane.PlaneComponents[component.Key] = model.PlaneComponents[component.Key].Item2;
                 }
                 else
                 {
-                    plane.ProductComponents.Add(component.Key,model.PlaneComponents[component.Key].Item2);
+                    plane.PlaneComponents.Add(component.Key,model.PlaneComponents[component.Key].Item2);
                 }
             }
             return plane;
@@ -97,9 +97,9 @@ namespace AircraftFactoryFileImplement.Implements
             return new PlaneViewModel
             {
                 Id = plane.Id,
-                ProductName = plane.ProductName,
+                PlaneName = plane.PlaneName,
                 Price = plane.Price,
-                PlaneComponents = plane.ProductComponents
+                PlaneComponents = plane.PlaneComponents
                 .ToDictionary(recPC => recPC.Key, recPC =>
                 (source.Components.FirstOrDefault(recC => recC.Id == recPC.Key)?.ComponentName, recPC.Value))
             };

@@ -14,15 +14,15 @@ namespace AircraftFactoryFileImplement
         private static FileDataListSingleton instance;
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
-        private readonly string ProductFileName = "Product.xml";
+        private readonly string PlaneFileName = "Plane.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
-        public List<Plane> Products { get; set; }
+        public List<Plane> Plane { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
-            Products = LoadProducts();
+            Plane = LoadPlanes();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -34,7 +34,7 @@ namespace AircraftFactoryFileImplement
         {
             SaveComponents();
             SaveOrders();
-            SaveProducts();
+            SavePlanes();
         }
         private List<Component> LoadComponents()
         {
@@ -66,7 +66,7 @@ namespace AircraftFactoryFileImplement
                     list.Add(new Order
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        ProductId = Convert.ToInt32(elem.Element("ProductId").Value),
+                        PlaneId = Convert.ToInt32(elem.Element("PlaneId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToInt32(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
@@ -78,17 +78,17 @@ namespace AircraftFactoryFileImplement
             }
             return list;
         }
-        private List<Plane> LoadProducts()
+        private List<Plane> LoadPlanes()
         {
             var list = new List<Plane>();
-            if (File.Exists(ProductFileName))
+            if (File.Exists(PlaneFileName))
             {
-                XDocument xDocument = XDocument.Load(ProductFileName);
-                var xElements = xDocument.Root.Elements("Product").ToList();
+                XDocument xDocument = XDocument.Load(PlaneFileName);
+                var xElements = xDocument.Root.Elements("Plane").ToList();
                 foreach (var elem in xElements)
                 {
                     var prodComp = new Dictionary<int, int>();
-                    foreach (var component in elem.Element("ProductComponents").Elements("ProductComponent").ToList())
+                    foreach (var component in elem.Element("PlaneComponents").Elements("PlaneComponent").ToList())
                     {
                         prodComp.Add(Convert.ToInt32(component.Element("Key").Value),
                        Convert.ToInt32(component.Element("Value").Value));
@@ -96,9 +96,9 @@ namespace AircraftFactoryFileImplement
                     list.Add(new Plane
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        ProductName = elem.Element("ProductName").Value,
+                        PlaneName = elem.Element("PlaneName").Value,
                         Price = Convert.ToDecimal(elem.Element("Price").Value),
-                        ProductComponents = prodComp
+                        PlaneComponents = prodComp
                     });
                 }
             }
@@ -128,7 +128,7 @@ namespace AircraftFactoryFileImplement
                 {
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
-                    new XElement("ProductId", order.ProductId),
+                    new XElement("PlaneId", order.PlaneId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
@@ -139,28 +139,28 @@ namespace AircraftFactoryFileImplement
                 xDocument.Save(OrderFileName);
             }
         }
-        private void SaveProducts()
+        private void SavePlanes()
         {
-            if (Products != null)
+            if (Plane != null)
             {
-                var xElement = new XElement("Products");
-                foreach (var product in Products)
+                var xElement = new XElement("Plane");
+                foreach (var item in Plane)
                 {
-                    var compElement = new XElement("ProductComponents");
-                    foreach (var component in product.ProductComponents)
+                    var compElement = new XElement("PlaneComponents");
+                    foreach (var component in item.PlaneComponents)
                     {
-                        compElement.Add(new XElement("ProductComponent",
+                        compElement.Add(new XElement("PlaneComponent",
                         new XElement("Key", component.Key),
                         new XElement("Value", component.Value)));
                     }
-                    xElement.Add(new XElement("Product",
-                     new XAttribute("Id", product.Id),
-                     new XElement("ProductName", product.ProductName),
-                     new XElement("Price", product.Price),
+                    xElement.Add(new XElement("Plane",
+                     new XAttribute("Id", item.Id),
+                     new XElement("PlaneName", item.PlaneName),
+                     new XElement("Price", item.Price),
                      compElement));
                 }
                 XDocument xDocument = new XDocument(xElement);
-                xDocument.Save(ProductFileName);
+                xDocument.Save(PlaneFileName);
             }
         }
     }

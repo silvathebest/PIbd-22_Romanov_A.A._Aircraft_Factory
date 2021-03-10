@@ -19,7 +19,7 @@ namespace AirCraftFactoryListImplement.Implements
         public List<PlaneViewModel> GetFullList()
         {
             List<PlaneViewModel> result = new List<PlaneViewModel>();
-            foreach (var component in source.Products)
+            foreach (var component in source.Planes)
             {
                 result.Add(CreateModel(component));
             }
@@ -32,11 +32,11 @@ namespace AirCraftFactoryListImplement.Implements
                 return null;
             }
             List<PlaneViewModel> result = new List<PlaneViewModel>();
-            foreach (var product in source.Products)
+            foreach (var plane in source.Planes)
             {
-                if (product.ProductName.Contains(model.ProductName))
+                if (plane.PlaneName.Contains(model.PlaneName))
                 {
-                    result.Add(CreateModel(product));
+                    result.Add(CreateModel(plane));
                 }
             }
             return result;
@@ -45,11 +45,11 @@ namespace AirCraftFactoryListImplement.Implements
         {
             if (model == null) return null;
 
-            foreach (var product in source.Products)
+            foreach (var plane in source.Planes)
             {
-                if (product.Id == model.Id || product.ProductName == model.ProductName)
+                if (plane.Id == model.Id || plane.PlaneName == model.PlaneName)
                 {
-                    return CreateModel(product);
+                    return CreateModel(plane);
                 }
             }
 
@@ -57,82 +57,82 @@ namespace AirCraftFactoryListImplement.Implements
         }
         public void Insert(PlaneBindingModel model)
         {
-            Plane tempProduct = new Plane
+            Plane tempPlane = new Plane
             {
                 Id = 1,
-                ProductComponents = new Dictionary<int, int>()
+                PlaneComponents = new Dictionary<int, int>()
             };
-            foreach (var product in source.Products)
+            foreach (var product in source.Planes)
             {
-                if (product.Id >= tempProduct.Id)
+                if (product.Id >= tempPlane.Id)
                 {
-                    tempProduct.Id = product.Id + 1;
+                    tempPlane.Id = product.Id + 1;
                 }
             }
-            source.Products.Add(CreateModel(model, tempProduct));
+            source.Planes.Add(CreateModel(model, tempPlane));
         }
         public void Update(PlaneBindingModel model)
         {
-            Plane tempProduct = null;
-            foreach (var product in source.Products)
+            Plane tempPlane = null;
+            foreach (var product in source.Planes)
             {
                 if (product.Id == model.Id)
                 {
-                    tempProduct = product;
+                    tempPlane = product;
                 }
             }
-            if (tempProduct == null)
+            if (tempPlane == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempProduct);
+            CreateModel(model, tempPlane);
         }
         public void Delete(PlaneBindingModel model)
         {
-            for (int i = 0; i < source.Products.Count; ++i)
+            for (int i = 0; i < source.Planes.Count; ++i)
             {
-                if (source.Products[i].Id == model.Id)
+                if (source.Planes[i].Id == model.Id)
                 {
-                    source.Products.RemoveAt(i);
+                    source.Planes.RemoveAt(i);
                     return;
                 }
             }
             throw new Exception("Элемент не найден");
         }
-        private Plane CreateModel(PlaneBindingModel model, Plane product)
+        private Plane CreateModel(PlaneBindingModel model, Plane plane)
         {
-            product.ProductName = model.ProductName;
-            product.Price = model.Price;
+            plane.PlaneName = model.PlaneName;
+            plane.Price = model.Price;
             // удаляем убранные
-            foreach (var key in product.ProductComponents.Keys.ToList())
+            foreach (var key in plane.PlaneComponents.Keys.ToList())
             {
                 if (!model.PlaneComponents.ContainsKey(key))
                 {
-                    product.ProductComponents.Remove(key);
+                    plane.PlaneComponents.Remove(key);
                 }
             }
             // обновляем существуюущие и добавляем новые
             foreach (var component in model.PlaneComponents)
             {
-                if (product.ProductComponents.ContainsKey(component.Key))
+                if (plane.PlaneComponents.ContainsKey(component.Key))
                 {
-                    product.ProductComponents[component.Key] =
+                    plane.PlaneComponents[component.Key] =
                     model.PlaneComponents[component.Key].Item2;
                 }
                 else
                 {
-                    product.ProductComponents.Add(component.Key,
+                    plane.PlaneComponents.Add(component.Key,
                     model.PlaneComponents[component.Key].Item2);
                 }
             }
-            return product;
+            return plane;
         }
         private PlaneViewModel CreateModel(Plane plane)
         {
             // требуется дополнительно получить список компонентов для изделия с названиями и их количество
-            Dictionary<int, (string, int)> productComponents = new
+            Dictionary<int, (string, int)> planeComponents = new
             Dictionary<int, (string, int)>();
-            foreach (var pc in plane.ProductComponents)
+            foreach (var pc in plane.PlaneComponents)
             {
                 string componentName = string.Empty;
                 foreach (var component in source.Components)
@@ -143,14 +143,14 @@ namespace AirCraftFactoryListImplement.Implements
                         break;
                     }
                 }
-                productComponents.Add(pc.Key, (componentName, pc.Value));
+                planeComponents.Add(pc.Key, (componentName, pc.Value));
             }
             return new PlaneViewModel
             {
                 Id = plane.Id,
-                ProductName = plane.ProductName,
+                PlaneName = plane.PlaneName,
                 Price = plane.Price,
-                PlaneComponents = productComponents
+                PlaneComponents = planeComponents
             };
         }
     }

@@ -28,7 +28,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
         }
         public void CreateOrUpdate(PlaneBindingModel model)
         {
-            var element = _planeStorage.GetElement(new PlaneBindingModel { ProductName = model.ProductName });
+            var element = _planeStorage.GetElement(new PlaneBindingModel { PlaneName = model.PlaneName });
             if (element != null && element.Id != model.Id)
             {
                 throw new Exception("Уже есть изделие с таким названием");
