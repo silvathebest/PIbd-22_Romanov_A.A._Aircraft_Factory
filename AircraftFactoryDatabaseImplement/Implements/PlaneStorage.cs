@@ -34,10 +34,8 @@ namespace AircraftFactoryDatabaseImplement.Implements
         }
         public List<PlaneViewModel> GetFilteredList(PlaneBindingModel model)
         {
-            if (model == null)
-            {
-                return null;
-            }
+            if (model == null) return null;
+
             using (var context = new AircraftFactoryDatabase())
             {
                 return context.Planes
@@ -68,8 +66,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 var product = context.Planes
                 .Include(rec => rec.PlaneComponents)
                .ThenInclude(rec => rec.Component)
-               .FirstOrDefault(rec => rec.PlaneName == model.PlaneName || rec.Id
-               == model.Id);
+               .FirstOrDefault(rec => rec.PlaneName == model.PlaneName || rec.Id == model.Id);
                 return product != null ?
                 new PlaneViewModel
                 {
@@ -90,8 +87,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Planes.Add(CreateModel(model, new Plane(), context));
-                        context.SaveChanges();
+                        CreateModel(model, new Plane(), context);
                         transaction.Commit();
                     }
                     catch
@@ -116,7 +112,6 @@ namespace AircraftFactoryDatabaseImplement.Implements
                             throw new Exception("Элемент не найден");
                         }
                         CreateModel(model, element, context);
-                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch
@@ -147,10 +142,15 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             plane.PlaneName = model.PlaneName;
             plane.Price = model.Price;
+            if (plane.Id == 0)
+            {
+                context.Planes.Add(plane);
+                context.SaveChanges();
+            }
             if (model.Id.HasValue)
             {
                 var productComponents = context.PlaneComponents.Where(rec =>
-               rec.ProductId == model.Id.Value).ToList();
+               rec.PlaneId == model.Id.Value).ToList();
                 // удалили те, которых нет в модели
                 context.PlaneComponents.RemoveRange(productComponents.Where(rec =>
                !model.PlaneComponents.ContainsKey(rec.ComponentId)).ToList());
@@ -158,8 +158,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 // обновили количество у существующих записей
                 foreach (var updateComponent in productComponents)
                 {
-                    updateComponent.Count =
-                   model.PlaneComponents[updateComponent.ComponentId].Item2;
+                    updateComponent.Count = model.PlaneComponents[updateComponent.ComponentId].Item2;
                     model.PlaneComponents.Remove(updateComponent.ComponentId);
                 }
                 context.SaveChanges();
@@ -169,7 +168,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             {
                 context.PlaneComponents.Add(new PlaneComponent
                 {
-                    ProductId = plane.Id,
+                    PlaneId = plane.Id,
                     ComponentId = pc.Key,
                     Count = pc.Value.Item2
                 });

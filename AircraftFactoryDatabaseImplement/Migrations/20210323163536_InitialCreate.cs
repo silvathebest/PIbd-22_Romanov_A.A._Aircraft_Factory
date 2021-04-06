@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AircraftFactoryDatabaseImplement.Migrations
 {
-    public partial class InitialCreate321 : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,10 +64,9 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(nullable: false),
+                    PlaneId = table.Column<int>(nullable: false),
                     ComponentId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
-                    PlaneId = table.Column<int>(nullable: true)
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +82,7 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                         column: x => x.PlaneId,
                         principalTable: "Planes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

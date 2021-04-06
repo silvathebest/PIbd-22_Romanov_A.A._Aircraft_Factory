@@ -21,7 +21,7 @@ namespace AircraftFactoryFileImplement.Implements
         public List<OrderViewModel> GetFullList() => source.Orders.Select(CreateModel).ToList();
 
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model) => model == null ?
-            null : source.Orders.Where(rec => rec.Status.Equals(model.Status)).Select(CreateModel).ToList();
+            null : source.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(CreateModel).ToList();
 
         public OrderViewModel GetElement(OrderBindingModel model)
         {

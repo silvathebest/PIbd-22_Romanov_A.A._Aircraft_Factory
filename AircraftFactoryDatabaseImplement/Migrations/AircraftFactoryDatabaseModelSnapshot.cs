@@ -99,10 +99,7 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlaneId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
+                    b.Property<int>("PlaneId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -133,7 +130,9 @@ namespace AircraftFactoryDatabaseImplement.Migrations
 
                     b.HasOne("AircraftFactoryDatabaseImplement.Models.Plane", "Plane")
                         .WithMany("PlaneComponents")
-                        .HasForeignKey("PlaneId");
+                        .HasForeignKey("PlaneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

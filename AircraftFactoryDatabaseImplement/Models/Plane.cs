@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AircraftFactoryDatabaseImplement.Models
@@ -15,7 +16,9 @@ namespace AircraftFactoryDatabaseImplement.Models
         public string PlaneName { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [ForeignKey("PlaneId")]
         public virtual List<PlaneComponent> PlaneComponents { get; set; }
+        [ForeignKey("PlaneId")]
         public virtual List<Order> Orders { get; set; }
     }
 }

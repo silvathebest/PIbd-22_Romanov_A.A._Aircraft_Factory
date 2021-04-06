@@ -48,11 +48,11 @@ namespace AirCraftFactoryListImplement.Implements
             if (model == null) return null;
 
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
+            foreach (Order component in  source.Orders)
             {
-                if (order.Id.Equals(model.Id))
+                if (component.DateCreate >= model.DateFrom && component.DateCreate <= model.DateTo)
                 {
-                    result.Add(CreateModel(order));
+                    result.Add(CreateModel(component));
                 }
             }
             return result;

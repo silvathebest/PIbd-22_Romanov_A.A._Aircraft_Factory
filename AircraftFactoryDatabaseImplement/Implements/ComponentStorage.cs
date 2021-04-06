@@ -15,8 +15,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             using (var context = new AircraftFactoryDatabase())
             {
-                return context.Components
-                .Select(rec => new ComponentViewModel
+                return context.Components.Select(rec => new ComponentViewModel
                 {
                     Id = rec.Id,
                     ComponentName = rec.ComponentName
@@ -25,10 +24,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         }
         public List<ComponentViewModel> GetFilteredList(ComponentBindingModel model)
         {
-            if (model == null)
-            {
-                return null;
-            }
+            if (model == null) return null;
             using (var context = new AircraftFactoryDatabase())
             {
                 return context.Components
@@ -100,5 +96,5 @@ namespace AircraftFactoryDatabaseImplement.Implements
             component.ComponentName = model.ComponentName;
             return component;
         }
-    }   
+    }
 }

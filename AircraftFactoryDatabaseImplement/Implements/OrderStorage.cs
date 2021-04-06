@@ -38,7 +38,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             using (var context = new AircraftFactoryDatabase())
             {
                 return context.Orders
-                .Where(rec => rec.PlaneId == model.PlaneId)
+                .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
