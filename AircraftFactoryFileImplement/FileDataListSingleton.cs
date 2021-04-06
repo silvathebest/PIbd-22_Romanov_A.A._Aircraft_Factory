@@ -15,15 +15,40 @@ namespace AircraftFactoryFileImplement
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string PlaneFileName = "Plane.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Plane> Plane { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Plane = LoadPlanes();
+            Clients = LoadClients();
         }
+
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var element in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(element.Attribute("Id").Value),
+                        FIO = element.Element("FIO").Value,
+                        Email = element.Element("Email").Value,
+                        Password = element.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
+
         public static FileDataListSingleton GetInstance()
         {
             if (instance == null) instance = new FileDataListSingleton();

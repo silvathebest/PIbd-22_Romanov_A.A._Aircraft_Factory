@@ -20,11 +20,13 @@ namespace AircraftFactoryView
         public new IUnityContainer Container { get; set; }
         private readonly PlaneLogic _logicP;
         private readonly OrderLogic _logicO;
-        public FormCreateOrder(PlaneLogic logicP, OrderLogic logicO)
+        private readonly ClientLogic _logicC;
+        public FormCreateOrder(PlaneLogic logicP, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicP = logicP;
             _logicO = logicO;
+            _logicC = logicC;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
@@ -37,6 +39,14 @@ namespace AircraftFactoryView
                     comboBoxProduct.DisplayMember = "PlaneName";
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.SelectedItem = null;
+                }
+                var listClients = _logicC.Read(null);
+                if (listClients != null)
+                {
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.DisplayMember = "FIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -57,7 +67,7 @@ namespace AircraftFactoryView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -81,10 +91,16 @@ namespace AircraftFactoryView
                 MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     PlaneId = Convert.ToInt32(comboBoxProduct.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)

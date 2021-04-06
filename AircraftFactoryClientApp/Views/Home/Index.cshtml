@@ -1,0 +1,71 @@
+﻿@using AircraftFactoryBusinessLogic.ViewModels
+@model List<OrderViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Заказы</h1>
+</div>
+<div class="text-center">
+    @{
+        if (Model == null)
+        {
+            <h3 class="display-4">Авторизируйтесь</h3>
+            return;
+        }
+        <p>
+            <a asp-action="Create">Создать заказ</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Изделие
+                    </th>
+                    <th>
+                        Дата создания
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Сумма
+                    </th>
+                    <th>
+                        Статус
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.PlaneName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.DateCreate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

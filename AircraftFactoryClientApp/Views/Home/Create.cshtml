@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center">
+    <h2 class="display-4">Создание заказа</h2>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-4">Изделие:</div>
+        <div class="col-8">
+            <select id="plane" name="plane" class="form-control" asp-items="@(new SelectList(@ViewBag.Planes,"Id", "PlaneName"))"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">Количество:</div>
+        <div class="col-8"><input type="text" name="count" id="count" /></div>
+    </div>
+    <div class="row">
+        <div class="col-4">Сумма:</div>
+        <div class="col-8">
+            <input type="text" id="sum" name="sum" readonly="true" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><input type="submit" value="Создать" class="btn btn-primary" /></div>
+    </div>
+</form>
+<script>
+    $('#plane').on('change', () => {
+        check();
+    });
+    $('#count').on('change', () => {
+        check();
+    });
+    function check() {
+        var count = $('#count').val();
+        var plane = $('#plane').val();
+        if (count && plane) {
+            $.ajax({
+                method: "POST",
+                url: "/Home/Calc",
+                data: { count, plane },
+                success: (result) => {
+                    $("#sum").val(result);
+                }
+            });
+        };
+    }
+</script>
