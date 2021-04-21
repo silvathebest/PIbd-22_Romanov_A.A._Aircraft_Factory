@@ -4,14 +4,16 @@ using AircraftFactoryDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AircraftFactoryDatabaseImplement.Migrations
 {
     [DbContext(typeof(AircraftFactoryDatabase))]
-    partial class AircraftFactoryDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20210420103430_Lab6")]
+    partial class Lab6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
