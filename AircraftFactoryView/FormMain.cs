@@ -114,5 +114,17 @@ namespace AircraftFactoryView
         {
             LoadData();
         }
+
+        private void warehouseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormWarehouses form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
+        private void warehouseFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormWarehouseFill form = Container.Resolve<FormWarehouseFill>();
+            form.ShowDialog();
+        }
     }
 }
