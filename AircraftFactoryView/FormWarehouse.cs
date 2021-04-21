@@ -19,9 +19,9 @@ namespace AircraftFactoryView
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private int? iD;
+        private int? id;
 
-        public int Id { set => iD = value; }
+        public int Id { set { id = value; } }
 
         private readonly WarehouseLogic logic;
 
@@ -34,11 +34,11 @@ namespace AircraftFactoryView
 
         private void FormWarehouse_Load(object sender, EventArgs e)
         {
-            if (iD.HasValue)
+            if (id.HasValue)
             {
                 try
                 {
-                    WarehouseViewModel view = logic.Read(new WarehouseBindingModel { Id = iD.Value })?[0];
+                    WarehouseViewModel view = logic.Read(new WarehouseBindingModel { Id = id.Value })?[0];
 
                     if (view != null)
                     {
@@ -50,8 +50,7 @@ namespace AircraftFactoryView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -95,7 +94,7 @@ namespace AircraftFactoryView
             {
                 logic.CreateOrUpdate(new WarehouseBindingModel
                 {
-                    Id = iD,
+                    Id = id,
                     WarehouseName = nameOfWarehouseTextBox.Text,
                     ResponsiblePerson = nameOfResponsibleTextBox.Text,
                     WarehouseComponents = warehouseComponents

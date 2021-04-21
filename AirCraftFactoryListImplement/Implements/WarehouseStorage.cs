@@ -39,7 +39,7 @@ namespace AirCraftFactoryListImplement.Implements
 
             foreach (Warehouse warehouse in source.Warehouses)
             {
-                if (warehouse.Id == model.Id)
+                if (warehouse.Id == model.Id || warehouse.WarehouseName == model.WarehouseName)
                 {
                     return CreateModel(warehouse);
                 }

@@ -35,11 +35,11 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(WarehouseBindingModel model)
         {
-            WarehouseViewModel element = _warehouseStorage.GetElement(new WarehouseBindingModel { Id = model.Id });
+            WarehouseViewModel element = _warehouseStorage.GetElement(new WarehouseBindingModel { WarehouseName = model.WarehouseName});
 
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже существует склад с идентичным названием");
+                throw new Exception("Уже существует склад с таким названием");
             }
 
             if (model.Id.HasValue)

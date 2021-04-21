@@ -42,39 +42,35 @@ namespace AircraftFactoryView
             // warehouseLabel
             // 
             this.warehouseLabel.AutoSize = true;
-            this.warehouseLabel.Location = new System.Drawing.Point(36, 25);
-            this.warehouseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.warehouseLabel.Location = new System.Drawing.Point(12, 20);
             this.warehouseLabel.Name = "warehouseLabel";
-            this.warehouseLabel.Size = new System.Drawing.Size(52, 17);
+            this.warehouseLabel.Size = new System.Drawing.Size(41, 13);
             this.warehouseLabel.TabIndex = 0;
             this.warehouseLabel.Text = "Склад:";
             // 
             // componentLabel
             // 
             this.componentLabel.AutoSize = true;
-            this.componentLabel.Location = new System.Drawing.Point(36, 92);
-            this.componentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.componentLabel.Location = new System.Drawing.Point(12, 50);
             this.componentLabel.Name = "componentLabel";
-            this.componentLabel.Size = new System.Drawing.Size(78, 17);
+            this.componentLabel.Size = new System.Drawing.Size(66, 13);
             this.componentLabel.TabIndex = 1;
-            this.componentLabel.Text = "Материал:";
+            this.componentLabel.Text = "Компонент:";
             // 
             // countLabel
             // 
             this.countLabel.AutoSize = true;
-            this.countLabel.Location = new System.Drawing.Point(36, 161);
-            this.countLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.countLabel.Location = new System.Drawing.Point(12, 85);
             this.countLabel.Name = "countLabel";
-            this.countLabel.Size = new System.Drawing.Size(90, 17);
+            this.countLabel.Size = new System.Drawing.Size(69, 13);
             this.countLabel.TabIndex = 2;
             this.countLabel.Text = "Количество:";
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(39, 221);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Location = new System.Drawing.Point(29, 128);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(128, 32);
+            this.saveButton.Size = new System.Drawing.Size(96, 26);
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -82,10 +78,9 @@ namespace AircraftFactoryView
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(40, 261);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelButton.Location = new System.Drawing.Point(261, 130);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(128, 30);
+            this.cancelButton.Size = new System.Drawing.Size(96, 24);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -94,34 +89,31 @@ namespace AircraftFactoryView
             // warehouseComboBox
             // 
             this.warehouseComboBox.FormattingEnabled = true;
-            this.warehouseComboBox.Location = new System.Drawing.Point(40, 44);
-            this.warehouseComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.warehouseComboBox.Location = new System.Drawing.Point(84, 17);
             this.warehouseComboBox.Name = "warehouseComboBox";
-            this.warehouseComboBox.Size = new System.Drawing.Size(160, 24);
+            this.warehouseComboBox.Size = new System.Drawing.Size(273, 21);
             this.warehouseComboBox.TabIndex = 5;
             // 
             // componentsComboBox
             // 
             this.componentsComboBox.FormattingEnabled = true;
-            this.componentsComboBox.Location = new System.Drawing.Point(40, 112);
-            this.componentsComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.componentsComboBox.Location = new System.Drawing.Point(84, 50);
             this.componentsComboBox.Name = "componentsComboBox";
-            this.componentsComboBox.Size = new System.Drawing.Size(160, 24);
+            this.componentsComboBox.Size = new System.Drawing.Size(273, 21);
             this.componentsComboBox.TabIndex = 6;
             // 
             // countTextBox
             // 
-            this.countTextBox.Location = new System.Drawing.Point(40, 182);
-            this.countTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.countTextBox.Location = new System.Drawing.Point(84, 82);
             this.countTextBox.Name = "countTextBox";
-            this.countTextBox.Size = new System.Drawing.Size(160, 22);
+            this.countTextBox.Size = new System.Drawing.Size(273, 20);
             this.countTextBox.TabIndex = 7;
             // 
             // FormWarehouseFill
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 302);
+            this.ClientSize = new System.Drawing.Size(369, 166);
             this.Controls.Add(this.countTextBox);
             this.Controls.Add(this.componentsComboBox);
             this.Controls.Add(this.warehouseComboBox);
@@ -130,7 +122,6 @@ namespace AircraftFactoryView
             this.Controls.Add(this.countLabel);
             this.Controls.Add(this.componentLabel);
             this.Controls.Add(this.warehouseLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormWarehouseFill";
             this.Text = "Пополнение склада";
             this.ResumeLayout(false);

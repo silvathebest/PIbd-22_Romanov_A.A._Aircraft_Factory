@@ -9,7 +9,7 @@ namespace AircraftFactoryBusinessLogic.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Название склада")]
+        [DisplayName("Cклад")]
         public string WarehouseName { get; set; }
 
         [DisplayName("ФИО ответственного")]
