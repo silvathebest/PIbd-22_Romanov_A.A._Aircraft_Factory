@@ -11,13 +11,11 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
 {
     public class ReportLogic
     {
-        private readonly IComponentStorage _componentStorage;
         private readonly IPlaneStorage _planeStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IPlaneStorage planeStorage, IComponentStorage componentStorage, IOrderStorage orderStorage)
+        public ReportLogic(IPlaneStorage planeStorage, IOrderStorage orderStorage)
         {
             _planeStorage = planeStorage;
-            _componentStorage = componentStorage;
             _orderStorage = orderStorage;
         }
         /// <summary>
