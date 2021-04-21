@@ -9,7 +9,7 @@ namespace AircraftFactoryBusinessLogic.BindingModels
     /// </summary>
     public class CreateOrderBindingModel
     {
-        public int ProductId { get; set; }
+        public int PlaneId { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
     }

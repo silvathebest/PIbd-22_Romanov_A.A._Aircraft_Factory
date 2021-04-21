@@ -31,7 +31,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
-                ProductId = model.ProductId,
+                PlaneId = model.PlaneId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -53,7 +53,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                ProductId = order.ProductId,
+                PlaneId = order.PlaneId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -75,7 +75,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                ProductId = order.ProductId,
+                PlaneId = order.PlaneId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -97,7 +97,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                ProductId = order.ProductId,
+                PlaneId = order.PlaneId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
