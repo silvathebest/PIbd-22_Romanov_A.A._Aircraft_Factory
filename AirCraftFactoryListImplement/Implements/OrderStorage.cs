@@ -53,6 +53,7 @@ namespace AirCraftFactoryListImplement.Implements
                 if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && 
                 order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date))
+
                 {
                     result.Add(CreateModel(order));
                 }

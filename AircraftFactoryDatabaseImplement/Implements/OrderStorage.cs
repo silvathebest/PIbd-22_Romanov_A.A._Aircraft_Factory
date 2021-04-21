@@ -41,6 +41,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             using (var context = new AircraftFactoryDatabase())
             {
                 return context.Orders
+ return context.Orders
                 .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate == model.DateCreate) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
                 .Select(rec => new OrderViewModel
