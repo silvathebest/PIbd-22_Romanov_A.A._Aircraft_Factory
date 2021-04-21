@@ -26,7 +26,6 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
         /// <returns></returns>
         public List<ReportPlaneComponentViewModel> GetPlaneComponent()
         {
-            var components = _componentStorage.GetFullList();
             var planes = _planeStorage.GetFullList();
             var list = new List<ReportPlaneComponentViewModel>();
             foreach (var plane in planes)
@@ -37,13 +36,10 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
                     TotalCount = 0,
                     PlaneName = plane.PlaneName
                 };
-                foreach (var component in components)
+                foreach (var component in plane.PlaneComponents)
                 {
-                    if (plane.PlaneComponents.ContainsKey(component.Id))
-                    {
-                        record.PlaneComponents.Add(new Tuple<string, int>(component.ComponentName, plane.PlaneComponents[component.Id].Item2));
-                        record.TotalCount += plane.PlaneComponents[component.Id].Item2;
-                    }
+                    record.PlaneComponents.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
+                    record.TotalCount += component.Value.Item2;
                 }
                 list.Add(record);
             }
