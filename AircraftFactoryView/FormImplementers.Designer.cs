@@ -96,7 +96,7 @@ namespace AircraftFactoryView
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridViewImplementers);
             this.Name = "FormImplementers";
-            this.Text = "FormImplementers";
+            this.Text = "Исполнители";
             this.Load += new System.EventHandler(this.FormImplementers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImplementers)).EndInit();
             this.ResumeLayout(false);

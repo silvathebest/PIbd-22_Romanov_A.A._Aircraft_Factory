@@ -17,7 +17,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             using (var context = new AircraftFactoryDatabase())
             {
-                return context.Orders
+                return context.Orders.Include(rec => rec.Client).Include(rec => rec.Implementer)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -72,7 +72,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null) return null;
-            
+
             using (var context = new AircraftFactoryDatabase())
             {
                 var order = context.Orders.Include(rec => rec.Planes).Include(rec => rec.Client).Include(rec => rec.Implementer)
