@@ -28,6 +28,7 @@ namespace AircraftFactoryFileImplement.Implements
                     || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
                  .Select(CreateModel).ToList();
 
+
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null) return null;

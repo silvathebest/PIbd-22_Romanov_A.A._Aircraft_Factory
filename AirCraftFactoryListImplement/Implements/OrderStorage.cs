@@ -58,6 +58,7 @@ namespace AirCraftFactoryListImplement.Implements
                     || (model.ClientId.HasValue && order.ClientId == model.ClientId)
                     || (model.FreeOrders.HasValue && model.FreeOrders.Value && !order.ImplementerId.HasValue)
                     || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
+
                 {
                     result.Add(CreateModel(order));
                 }
