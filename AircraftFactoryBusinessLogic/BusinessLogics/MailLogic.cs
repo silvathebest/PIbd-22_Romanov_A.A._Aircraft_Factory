@@ -115,7 +115,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
                                     MessageId = message.MessageId,
                                     FromMailAddress = mail.Address,
                                     Subject = message.Subject,
-                                    Body = message.TextBody
+                                    Body = message.TextBody,
                                 });
                             }
                         }
