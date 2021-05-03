@@ -101,7 +101,7 @@ namespace AircraftFactoryView
             this.Controls.Add(this.comboBoxComponent);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelComponent);
-            this.Name = "FormProductComponent";
+            this.Name = "FormPlaneComponent";
             this.Text = "Компонент изделия";
             this.ResumeLayout(false);
             this.PerformLayout();

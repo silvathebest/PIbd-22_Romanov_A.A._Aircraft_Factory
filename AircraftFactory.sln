@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftFactoryView", "Airc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryBusinessLogic", "AircraftFactoryBusinessLogic\AircraftFactoryBusinessLogic.csproj", "{5072EDC5-84BC-45E5-9AB0-8DD79EC2A3E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirCraftFactoryListImplement", "AirCraftFactoryListImplement\AirCraftFactoryListImplement.csproj", "{1266CD70-3765-4712-ADE9-E6FDED509ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirсraftFactoryListImplement", "AirCraftFactoryListImplement\AirсraftFactoryListImplement.csproj", "{1266CD70-3765-4712-ADE9-E6FDED509ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftFactoryFileImplement", "AircraftFactoryFileImplement\AircraftFactoryFileImplement.csproj", "{75F88E7A-D7A1-4812-BD6E-9D39F268329B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryFileImplement", "AircraftFactoryFileImplement\AircraftFactoryFileImplement.csproj", "{75F88E7A-D7A1-4812-BD6E-9D39F268329B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryDatabaseImplement", "AircraftFactoryDatabaseImplement\AircraftFactoryDatabaseImplement.csproj", "{B786D031-B136-4F4E-8B07-51D749CDD6D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{75F88E7A-D7A1-4812-BD6E-9D39F268329B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F88E7A-D7A1-4812-BD6E-9D39F268329B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F88E7A-D7A1-4812-BD6E-9D39F268329B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B786D031-B136-4F4E-8B07-51D749CDD6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B786D031-B136-4F4E-8B07-51D749CDD6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B786D031-B136-4F4E-8B07-51D749CDD6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B786D031-B136-4F4E-8B07-51D749CDD6D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
