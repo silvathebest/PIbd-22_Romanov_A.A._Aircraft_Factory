@@ -19,5 +19,6 @@ namespace AircraftFactoryBusinessLogic.Interfaces
         void Update(WarehouseBindingModel model);
 
         void Delete(WarehouseBindingModel model);
+        bool IsTaked(Dictionary<int, (string, int)> components, int planeCount);
     }
 }

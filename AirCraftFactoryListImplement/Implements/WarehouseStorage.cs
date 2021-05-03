@@ -96,6 +96,11 @@ namespace AirCraftFactoryListImplement.Implements
             source.Warehouses.Add(CreateModel(model, tempWarehouse));
         }
 
+        public bool IsTaked(Dictionary<int, (string, int)> component, int planeCount)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(WarehouseBindingModel model)
         {
             Warehouse tempWarehouse = null;

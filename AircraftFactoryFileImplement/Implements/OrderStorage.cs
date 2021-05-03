@@ -69,7 +69,7 @@ namespace AircraftFactoryFileImplement.Implements
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            order.ProductId = model.ProductId;
+            order.PlaneId = model.PlaneId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -80,12 +80,12 @@ namespace AircraftFactoryFileImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
-            string planeName = source.Products.FirstOrDefault(rec => rec.Id == order.ProductId).ProductName;
+            string planeName = source.Planes.FirstOrDefault(rec => rec.Id == order.PlaneId).PlaneName;
             return new OrderViewModel
             {
                 Id = order.Id,
-                ProductId = order.ProductId,
-                ProductName = planeName,
+                PlaneId = order.PlaneId,
+                PlaneName = planeName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
