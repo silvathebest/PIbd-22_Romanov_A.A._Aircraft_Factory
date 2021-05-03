@@ -34,7 +34,7 @@ namespace AircraftFactoryView
                 if (list != null)
                 {
                     comboBoxProduct.DataSource = list;
-                    comboBoxProduct.DisplayMember = "ProductName";
+                    comboBoxProduct.DisplayMember = "PlaneName";
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.SelectedItem = null;
                 }
