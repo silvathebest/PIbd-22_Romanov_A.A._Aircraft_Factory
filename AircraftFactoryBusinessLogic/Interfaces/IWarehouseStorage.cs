@@ -8,7 +8,7 @@ namespace AircraftFactoryBusinessLogic.Interfaces
 {
     public interface IWarehouseStorage
     {
-        List<WarehouseViewModel> GetFullList();
+        List<WarehouseViewModel> GetFullList { get; }
 
         List<WarehouseViewModel> GetFilteredList(WarehouseBindingModel model);
 

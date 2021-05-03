@@ -66,14 +66,17 @@ namespace AirCraftFactoryListImplement.Implements
             return result;
         }
 
-        public List<WarehouseViewModel> GetFullList()
+        public List<WarehouseViewModel> GetFullList
         {
-            List<WarehouseViewModel> result = new List<WarehouseViewModel>();
-            foreach (Warehouse warehouse in source.Warehouses)
+            get
             {
-                result.Add(CreateModel(warehouse));
+                List<WarehouseViewModel> result = new List<WarehouseViewModel>();
+                foreach (Warehouse warehouse in source.Warehouses)
+                {
+                    result.Add(CreateModel(warehouse));
+                }
+                return result;
             }
-            return result;
         }
 
         public void Insert(WarehouseBindingModel model)

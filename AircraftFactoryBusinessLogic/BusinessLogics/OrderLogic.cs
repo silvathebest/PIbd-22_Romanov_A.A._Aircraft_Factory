@@ -11,9 +11,13 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IPlaneStorage _planeStorage;
+        private readonly IWarehouseStorage _warehouseStorage;
+        public OrderLogic(IOrderStorage orderStorage, IPlaneStorage planeStorage, IWarehouseStorage warehouseStorage)
         {
             _orderStorage = orderStorage;
+            _planeStorage = planeStorage;
+            _warehouseStorage = warehouseStorage;
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
@@ -49,6 +53,10 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            if (!_warehouseStorage.IsTaked(_planeStorage.GetElement(new PlaneBindingModel { Id = order.PlaneId }).PlaneComponents, order.Count))
+            {
+                throw new Exception("Недостаточно материалов");
             }
             _orderStorage.Update(new OrderBindingModel
             {
