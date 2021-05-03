@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AircraftFactoryDatabaseImplement.Migrations
 {
     [DbContext(typeof(AircraftFactoryDatabase))]
-    [Migration("20210420103430_Lab6")]
-    partial class Lab6
+    [Migration("20210503175821_Lab7")]
+    partial class Lab7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,33 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Implementers");
+                });
+
+            modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
                 });
 
             modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.Order", b =>
@@ -167,6 +194,13 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                     b.HasIndex("PlaneId");
 
                     b.ToTable("PlaneComponents");
+                });
+
+            modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("AircraftFactoryDatabaseImplement.Models.Client", "Client")
+                        .WithMany("Messages")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.Order", b =>

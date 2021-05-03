@@ -44,6 +44,7 @@ namespace AircraftFactoryView
             this.компонентыПоИзделиямToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +94,8 @@ namespace AircraftFactoryView
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникиToolStripMenuItem,
             this.отчетыToolStripMenuItem,
-            this.startWorkToolStripMenuItem});
+            this.startWorkToolStripMenuItem,
+            this.mailToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -115,28 +117,28 @@ namespace AircraftFactoryView
             // компонентыToolStripMenuItem
             // 
             this.компонентыToolStripMenuItem.Name = "компонентыToolStripMenuItem";
-            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.компонентыToolStripMenuItem.Text = "Компоненты";
             this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.КомпонентыToolStripMenuItem_Click);
             // 
             // planesToolStripMenuItem
             // 
             this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
-            this.planesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planesToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.planesToolStripMenuItem.Text = "Изделия";
             this.planesToolStripMenuItem.Click += new System.EventHandler(this.planesToolStripMenuItem_Click);
             // 
             // clientsToolStripMenuItem
             // 
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.clientsToolStripMenuItem.Text = "Клиенты";
             this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // implementerToolStripMenuItem
             // 
             this.implementerToolStripMenuItem.Name = "implementerToolStripMenuItem";
-            this.implementerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.implementerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.implementerToolStripMenuItem.Text = "Исполнители";
             this.implementerToolStripMenuItem.Click += new System.EventHandler(this.implementerToolStripMenuItem_Click);
             // 
@@ -178,6 +180,13 @@ namespace AircraftFactoryView
             this.startWorkToolStripMenuItem.Text = "Запуск работ";
             this.startWorkToolStripMenuItem.Click += new System.EventHandler(this.startWorkToolStripMenuItem_Click);
             // 
+            // mailToolStripMenuItem
+            // 
+            this.mailToolStripMenuItem.Name = "mailToolStripMenuItem";
+            this.mailToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.mailToolStripMenuItem.Text = "Письма";
+            this.mailToolStripMenuItem.Click += new System.EventHandler(this.mailToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,5 +226,6 @@ namespace AircraftFactoryView
         private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem implementerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startWorkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mailToolStripMenuItem;
     }
 }

@@ -1,4 +1,5 @@
 using AircraftFactoryBusinessLogic.BusinessLogics;
+using AircraftFactoryBusinessLogic.HelperModels;
 using AircraftFactoryBusinessLogic.Interfaces;
 using AircraftFactoryDatabaseImplement.Implements;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AircraftFactoryRestApi
@@ -30,14 +32,31 @@ namespace AircraftFactoryRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IPlaneStorage, PlaneStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
             services.AddTransient<OrderLogic>();
             services.AddTransient<ClientLogic>();
             services.AddTransient<PlaneLogic>();
+            services.AddTransient<MailLogic>();
             services.AddControllers().AddNewtonsoftJson();
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = Configuration["SmtpClientHost"],
+                SmtpClientPort = Convert.ToInt32(Configuration["SmtpClientPort"]),
+                MailLogin = Configuration["MailLogin"],
+                MailPassword = Configuration["MailPassword"],
+            });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var timer = new Timer(new TimerCallback(MailCheck), new MailCheckInfo
+            {
+                PopHost = Configuration["PopHost"],
+                PopPort = Convert.ToInt32(Configuration["PopPort"]),
+                MessageInfoStorage = new MessageInfoStorage(),
+                ClientStorage = new ClientStorage()
+            }, 0, 100000);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,6 +68,10 @@ namespace AircraftFactoryRestApi
             {
                 endpoints.MapControllers();
             });
+        }
+        private static void MailCheck(object obj)
+        {
+            MailLogic.MailCheck((MailCheckInfo)obj);
         }
     }
 }

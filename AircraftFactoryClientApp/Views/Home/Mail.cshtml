@@ -1,0 +1,52 @@
+﻿@using AircraftFactoryBusinessLogic.ViewModels
+@model List<MessageInfoViewModel>
+@{
+    ViewData["Title"] = "Mail"; }
+<div class="text-center">
+    <h1 class="display-4">Письма</h1>
+</div>
+<div class="text-center">
+    @{
+        if (Model == null)
+        {
+            <h3 class="display-4">Авторизируйтесь</h3>
+            return;
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Отправитель
+                    </th>
+                    <th>
+                        Заголовок
+                    </th>
+                    <th>
+                        Дата письма
+                    </th>
+                    <th>
+                        Текст
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SenderName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateDelivery)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table> }
+</div>

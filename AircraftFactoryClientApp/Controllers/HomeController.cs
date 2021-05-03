@@ -25,6 +25,14 @@ namespace AircraftFactoryClientApp.Controllers
             return
             View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
         }
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
+        }
         [HttpGet]
         public IActionResult Privacy()
         {
@@ -40,7 +48,6 @@ namespace AircraftFactoryClientApp.Controllers
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)
             && !string.IsNullOrEmpty(fio))
             {
-
                 Program.Client.FIO = fio;
                 Program.Client.Email = login;
                 Program.Client.Password = password;
@@ -74,8 +81,7 @@ namespace AircraftFactoryClientApp.Controllers
         {
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password))
             {
-                Program.Client =
-                APIClient.GetRequest<ClientViewModel>($"api/client/login?login={login}&password={password}");
+                Program.Client = APIClient.GetRequest<ClientViewModel>($"api/client/login?login={login}&password={password}");
                 if (Program.Client == null)
                 {
                     throw new Exception("Неверный логин/пароль");
@@ -122,7 +128,7 @@ namespace AircraftFactoryClientApp.Controllers
             }
             APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
             {
-                ClientId = (int)Program.Client.Id,
+                ClientId = Program.Client.Id,
                 PlaneId = plane,
                 Count = count,
                 Sum = sum

@@ -81,7 +81,7 @@ namespace AircraftFactoryView
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(94, 23);
             this.buttonRef.TabIndex = 4;
-            this.buttonRef.Text = "Изменить";
+            this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
             this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
             // 
