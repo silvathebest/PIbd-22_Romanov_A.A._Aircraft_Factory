@@ -6,17 +6,16 @@ using System.Text;
 
 namespace AircraftFactoryDatabaseImplement.Models
 {
-    /// <summary>
-    /// Компонент, требуемый для изготовления изделия
-    /// </summary>
-    public class Component
+    public class Warehouse
     {
         public int Id { get; set; }
         [Required]
-        public string ComponentName { get; set; }
-        [ForeignKey("ComponentId")]
-        public virtual List<PlaneComponent> PlaneComponents { get; set; }
-        [ForeignKey("ComponentId")]
+        public string WarehouseName { get; set; }
+        [Required]
+        public string ResponsiblePerson { get; set; }
+        [Required]
+        public DateTime DateCreate { get; set; }
+        [ForeignKey("WarehouseId")]
         public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }
