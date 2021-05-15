@@ -39,11 +39,11 @@ namespace AircraftFactoryView
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
             this.ColumID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -146,6 +146,23 @@ namespace AircraftFactoryView
             this.dataGridView.Size = new System.Drawing.Size(447, 347);
             this.dataGridView.TabIndex = 0;
             // 
+            // ColumID
+            // 
+            this.ColumID.HeaderText = "Id";
+            this.ColumID.Name = "ColumID";
+            this.ColumID.Visible = false;
+            // 
+            // Component
+            // 
+            this.Component.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Component.HeaderText = "Компонент";
+            this.Component.Name = "Component";
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Количество";
+            this.Count.Name = "Count";
+            // 
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(483, 451);
@@ -165,23 +182,6 @@ namespace AircraftFactoryView
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
-            // 
-            // ColumID
-            // 
-            this.ColumID.HeaderText = "Id";
-            this.ColumID.Name = "ColumID";
-            this.ColumID.Visible = false;
-            // 
-            // Component
-            // 
-            this.Component.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Component.HeaderText = "Компонент";
-            this.Component.Name = "Component";
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Количество";
-            this.Count.Name = "Count";
             // 
             // FormPlane
             // 

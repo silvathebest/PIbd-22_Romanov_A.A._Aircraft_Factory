@@ -91,7 +91,6 @@ namespace AircraftFactoryDatabaseImplement.Implements
                     try
                     {
                         context.Planes.Add(CreateModel(model, new Plane(), context));
-                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch
@@ -147,19 +146,23 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             plane.PlaneName = model.PlaneName;
             plane.Price = model.Price;
+            if (plane.Id == 0)
+            {
+                context.Planes.Add(plane);
+                context.SaveChanges();
+            }
             if (model.Id.HasValue)
             {
-                var productComponents = context.PlaneComponents.Where(rec =>
-               rec.ProductId == model.Id.Value).ToList();
+                var planeComponents = context.PlaneComponents.Where(rec =>
+               rec.PlaneId == model.Id.Value).ToList();
                 // удалили те, которых нет в модели
-                context.PlaneComponents.RemoveRange(productComponents.Where(rec =>
+                context.PlaneComponents.RemoveRange(planeComponents.Where(rec =>
                !model.PlaneComponents.ContainsKey(rec.ComponentId)).ToList());
                 context.SaveChanges();
                 // обновили количество у существующих записей
-                foreach (var updateComponent in productComponents)
+                foreach (var updateComponent in planeComponents)
                 {
-                    updateComponent.Count =
-                   model.PlaneComponents[updateComponent.ComponentId].Item2;
+                    updateComponent.Count = model.PlaneComponents[updateComponent.ComponentId].Item2;
                     model.PlaneComponents.Remove(updateComponent.ComponentId);
                 }
                 context.SaveChanges();
@@ -169,7 +172,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             {
                 context.PlaneComponents.Add(new PlaneComponent
                 {
-                    ProductId = plane.Id,
+                    PlaneId = plane.Id,
                     ComponentId = pc.Key,
                     Count = pc.Value.Item2
                 });

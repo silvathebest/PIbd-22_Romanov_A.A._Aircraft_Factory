@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AircraftFactoryDatabaseImplement.Migrations
 {
-    public partial class InitialCreate321 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,21 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Planes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Warehouses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WarehouseName = table.Column<string>(nullable: false),
+                    ResponsiblePerson = table.Column<string>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Warehouses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,10 +79,9 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(nullable: false),
+                    PlaneId = table.Column<int>(nullable: false),
                     ComponentId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
-                    PlaneId = table.Column<int>(nullable: true)
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +97,34 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                         column: x => x.PlaneId,
                         principalTable: "Planes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WarehouseComponents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ComponentId = table.Column<int>(nullable: false),
+                    WarehouseId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WarehouseComponents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WarehouseComponents_Components_ComponentId",
+                        column: x => x.ComponentId,
+                        principalTable: "Components",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WarehouseComponents_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -100,6 +141,16 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                 name: "IX_PlaneComponents_PlaneId",
                 table: "PlaneComponents",
                 column: "PlaneId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseComponents_ComponentId",
+                table: "WarehouseComponents",
+                column: "ComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseComponents_WarehouseId",
+                table: "WarehouseComponents",
+                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -111,10 +162,16 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                 name: "PlaneComponents");
 
             migrationBuilder.DropTable(
-                name: "Components");
+                name: "WarehouseComponents");
 
             migrationBuilder.DropTable(
                 name: "Planes");
+
+            migrationBuilder.DropTable(
+                name: "Components");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
         }
     }
 }

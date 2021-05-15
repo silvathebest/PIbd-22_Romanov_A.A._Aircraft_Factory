@@ -22,7 +22,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
         {
             if (model == null)
             {
-                return _warehouseStorage.GetFullList;
+                return _warehouseStorage.GetFullList();
             }
 
             if (model.Id.HasValue)

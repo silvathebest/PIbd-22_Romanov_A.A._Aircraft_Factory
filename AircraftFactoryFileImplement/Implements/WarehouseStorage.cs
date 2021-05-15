@@ -46,7 +46,7 @@ namespace AircraftFactoryFileImplement.Implements
         public List<WarehouseViewModel> GetFilteredList(WarehouseBindingModel model) => model == null ? null :
             source.Warehouses.Where(xWarehouse => xWarehouse.WarehouseName.Contains(model.WarehouseName)).Select(CreateModel).ToList();
 
-        public List<WarehouseViewModel> GetFullList => source.Warehouses.Select(CreateModel).ToList();
+        public List<WarehouseViewModel> GetFullList() => source.Warehouses.Select(CreateModel).ToList();
 
         public void Insert(WarehouseBindingModel model)
         {

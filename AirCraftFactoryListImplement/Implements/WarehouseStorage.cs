@@ -35,7 +35,7 @@ namespace AirCraftFactoryListImplement.Implements
         public WarehouseViewModel GetElement(WarehouseBindingModel model)
         {
             if (model == null) return null;
-            
+
 
             foreach (Warehouse warehouse in source.Warehouses)
             {
@@ -51,9 +51,9 @@ namespace AirCraftFactoryListImplement.Implements
         public List<WarehouseViewModel> GetFilteredList(WarehouseBindingModel model)
         {
             if (model == null)
-            
+
                 return null;
-            
+
 
             List<WarehouseViewModel> result = new List<WarehouseViewModel>();
             foreach (Warehouse warehouse in source.Warehouses)
@@ -66,17 +66,15 @@ namespace AirCraftFactoryListImplement.Implements
             return result;
         }
 
-        public List<WarehouseViewModel> GetFullList
+        public List<WarehouseViewModel> GetFullList()
         {
-            get
+
+            List<WarehouseViewModel> result = new List<WarehouseViewModel>();
+            foreach (Warehouse warehouse in source.Warehouses)
             {
-                List<WarehouseViewModel> result = new List<WarehouseViewModel>();
-                foreach (Warehouse warehouse in source.Warehouses)
-                {
-                    result.Add(CreateModel(warehouse));
-                }
-                return result;
+                result.Add(CreateModel(warehouse));
             }
+            return result;
         }
 
         public void Insert(WarehouseBindingModel model)
@@ -84,7 +82,7 @@ namespace AirCraftFactoryListImplement.Implements
             Warehouse tempWarehouse = new Warehouse
             {
                 Id = 1,
-                WarehouseComponents= new Dictionary<int, int>(),
+                WarehouseComponents = new Dictionary<int, int>(),
                 DateCreate = DateTime.Now
             };
 

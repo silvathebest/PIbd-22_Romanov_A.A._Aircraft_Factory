@@ -13,14 +13,14 @@ namespace AircraftFactoryView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public int Id { set { id = value; } }
+        public int Id { set => id = value; }
         private readonly PlaneLogic logic;
         private int? id;
         private Dictionary<int, (string, int)> planeComponents;
         public FormPlane(PlaneLogic service)
         {
             InitializeComponent();
-            this.logic = service;
+            logic = service;
         }
         private void FormPlane_Load(object sender, EventArgs e)
         {
