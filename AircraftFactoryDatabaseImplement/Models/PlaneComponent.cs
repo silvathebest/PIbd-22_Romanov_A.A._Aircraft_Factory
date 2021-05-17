@@ -17,6 +17,5 @@ namespace AircraftFactoryDatabaseImplement.Models
         public int Count { get; set; }
         public virtual Component Component { get; set; }
         public virtual Plane Plane { get; set; }
-
     }
 }

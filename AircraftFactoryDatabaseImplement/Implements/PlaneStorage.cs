@@ -34,10 +34,8 @@ namespace AircraftFactoryDatabaseImplement.Implements
         }
         public List<PlaneViewModel> GetFilteredList(PlaneBindingModel model)
         {
-            if (model == null)
-            {
-                return null;
-            }
+            if (model == null) return null;
+
             using (var context = new AircraftFactoryDatabase())
             {
                 return context.Planes
@@ -68,8 +66,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 var product = context.Planes
                 .Include(rec => rec.PlaneComponents)
                .ThenInclude(rec => rec.Component)
-               .FirstOrDefault(rec => rec.PlaneName == model.PlaneName || rec.Id
-               == model.Id);
+               .FirstOrDefault(rec => rec.PlaneName == model.PlaneName || rec.Id == model.Id);
                 return product != null ?
                 new PlaneViewModel
                 {
@@ -90,7 +87,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Planes.Add(CreateModel(model, new Plane(), context));
+                        CreateModel(model, new Plane(), context);
                         transaction.Commit();
                     }
                     catch
@@ -115,7 +112,6 @@ namespace AircraftFactoryDatabaseImplement.Implements
                             throw new Exception("Элемент не найден");
                         }
                         CreateModel(model, element, context);
-                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch
