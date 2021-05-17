@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AircraftFactoryBusinessLogic.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -10,8 +11,9 @@ namespace AircraftFactoryBusinessLogic.ViewModels
     /// </summary>
     public class ComponentViewModel
     {
+        [Column(title: "Номер", width: 100)]
         public int Id { get; set; }
-        [DisplayName("Название компонента")]
+        [Column(title: "Название компонента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
     }
 }

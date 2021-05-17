@@ -45,6 +45,7 @@ namespace AircraftFactoryView
             this.списокЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +96,8 @@ namespace AircraftFactoryView
             this.справочникиToolStripMenuItem,
             this.отчетыToolStripMenuItem,
             this.startWorkToolStripMenuItem,
-            this.mailToolStripMenuItem});
+            this.mailToolStripMenuItem,
+            this.createBackupToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -187,6 +189,13 @@ namespace AircraftFactoryView
             this.mailToolStripMenuItem.Text = "Письма";
             this.mailToolStripMenuItem.Click += new System.EventHandler(this.mailToolStripMenuItem_Click);
             // 
+            // createBackupToolStripMenuItem
+            // 
+            this.createBackupToolStripMenuItem.Name = "createBackupToolStripMenuItem";
+            this.createBackupToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.createBackupToolStripMenuItem.Text = "Создать бэкап";
+            this.createBackupToolStripMenuItem.Click += new System.EventHandler(this.createBackupToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,5 +236,6 @@ namespace AircraftFactoryView
         private System.Windows.Forms.ToolStripMenuItem implementerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startWorkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBackupToolStripMenuItem;
     }
 }
