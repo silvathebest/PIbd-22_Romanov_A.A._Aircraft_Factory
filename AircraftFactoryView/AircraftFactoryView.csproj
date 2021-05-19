@@ -274,6 +274,7 @@
     </Compile>
     <Compile Include="FormWarehouses.Designer.cs">
       <DependentUpon>FormWarehouses.cs</DependentUpon>
+	</Compile>
     <Compile Include="FormReportPlaneComponents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +316,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWarehouses.resx">
       <DependentUpon>FormWarehouses.cs</DependentUpon>
+	</EmbeddedResource>
     <EmbeddedResource Include="FormReportPlaneComponents.resx">
       <DependentUpon>FormReportPlaneComponents.cs</DependentUpon>
     </EmbeddedResource>
