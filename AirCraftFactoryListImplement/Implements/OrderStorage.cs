@@ -101,6 +101,7 @@ namespace AirCraftFactoryListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PlaneId = model.PlaneId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -118,6 +119,16 @@ namespace AirCraftFactoryListImplement.Implements
                     planeName = item.PlaneName;
                 }
             }
+            string clientFio = null;
+
+            foreach (var client in source.Clients)
+            {
+                if (client.Id == order.PlaneId)
+                {
+                    clientFio = client.FIO;
+                }
+            }
+
             return new OrderViewModel
             {
                 Id = order.Id,
@@ -127,7 +138,9 @@ namespace AirCraftFactoryListImplement.Implements
                 Sum = order.Sum,
                 Status = order.Status,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement
+                DateImplement = order.DateImplement,
+                ClientId = order.ClientId,
+                ClientFIO = clientFio
             };
         }
     }

@@ -41,6 +41,7 @@ namespace AircraftFactoryView
             this.изделияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseFillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокКомпонентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.компонентыПоИзделиямToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,6 +116,7 @@ namespace AircraftFactoryView
             this.buttonRefresh.TabIndex = 5;
             this.buttonRefresh.Text = "Обновить список";
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
             // menuStrip1
             // 
@@ -134,7 +136,8 @@ namespace AircraftFactoryView
             this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.компонентыToolStripMenuItem,
             this.изделияToolStripMenuItem,
-            this.warehouseToolStripMenuItem});
+            this.warehouseToolStripMenuItem,
+            this.clientsToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
             this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -166,6 +169,12 @@ namespace AircraftFactoryView
             this.warehouseFillToolStripMenuItem.Size = new System.Drawing.Size(162, 24);
             this.warehouseFillToolStripMenuItem.Text = "Пополнение склада";
             this.warehouseFillToolStripMenuItem.Click += new System.EventHandler(this.warehouseFillToolStripMenuItem_Click);
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
+            this.clientsToolStripMenuItem.Text = "Клиенты";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
@@ -268,5 +277,6 @@ namespace AircraftFactoryView
         private System.Windows.Forms.ToolStripMenuItem списокЗаказовЗаВсеДатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
     }
 }

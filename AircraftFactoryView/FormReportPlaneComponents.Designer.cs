@@ -31,11 +31,11 @@ namespace AircraftFactoryView
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.buttonSaveToExcel = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Plane = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonSaveToExcel = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,52 +46,61 @@ namespace AircraftFactoryView
             this.Plane,
             this.Component,
             this.Count});
-            this.dataGridView.Location = new System.Drawing.Point(12, 43);
+            this.dataGridView.Location = new System.Drawing.Point(16, 53);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(607, 409);
+            this.dataGridView.RowHeadersWidth = 51;
+            this.dataGridView.Size = new System.Drawing.Size(809, 503);
             this.dataGridView.TabIndex = 0;
-            // 
-            // buttonSaveToExcel
-            // 
-            this.buttonSaveToExcel.Location = new System.Drawing.Point(12, 12);
-            this.buttonSaveToExcel.Name = "buttonSaveToExcel";
-            this.buttonSaveToExcel.Size = new System.Drawing.Size(142, 23);
-            this.buttonSaveToExcel.TabIndex = 1;
-            this.buttonSaveToExcel.Text = "Сохранить в Excel";
-            this.buttonSaveToExcel.UseVisualStyleBackColor = true;
-            this.buttonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Plane
             // 
             this.Plane.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Plane.HeaderText = "Изделие";
+            this.Plane.MinimumWidth = 6;
             this.Plane.Name = "Plane";
             // 
             // Component
             // 
             this.Component.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Component.HeaderText = "Компонент";
+            this.Component.MinimumWidth = 6;
             this.Component.Name = "Component";
             // 
             // Count
             // 
             this.Count.HeaderText = "Количество";
+            this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
+            this.Count.Width = 125;
+            // 
+            // buttonSaveToExcel
+            // 
+            this.buttonSaveToExcel.Location = new System.Drawing.Point(16, 15);
+            this.buttonSaveToExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSaveToExcel.Name = "buttonSaveToExcel";
+            this.buttonSaveToExcel.Size = new System.Drawing.Size(189, 28);
+            this.buttonSaveToExcel.TabIndex = 1;
+            this.buttonSaveToExcel.Text = "Сохранить в Excel";
+            this.buttonSaveToExcel.UseVisualStyleBackColor = true;
+            this.buttonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip.Name = "contextMenuStrip1";
+            this.contextMenuStrip.Size = new System.Drawing.Size(211, 32);
             // 
             // FormReportPlaneComponents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 450);
+            this.ClientSize = new System.Drawing.Size(841, 554);
             this.Controls.Add(this.buttonSaveToExcel);
             this.Controls.Add(this.dataGridView);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormReportPlaneComponents";
-            this.Text = "Компоненты по изделиям";
+            this.Text = "Изделия по компонентам";
             this.Load += new System.EventHandler(this.FormReportPrintedComponents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -102,7 +111,7 @@ namespace AircraftFactoryView
 
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSaveToExcel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.DataGridViewTextBoxColumn Plane;
         private System.Windows.Forms.DataGridViewTextBoxColumn Component;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;

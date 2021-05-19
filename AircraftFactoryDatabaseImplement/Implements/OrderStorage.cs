@@ -27,6 +27,8 @@ namespace AircraftFactoryDatabaseImplement.Implements
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
+                    ClientId = rec.ClientId,
+                    ClientFIO = context.Clients.Include(x => x.Orders).FirstOrDefault(x => x.Id == rec.ClientId).FIO,
                 }).ToList();
             }
         }
@@ -44,14 +46,17 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFIO = context.Clients.Include(x => x.Orders).FirstOrDefault(x => x.Id == rec.ClientId).FIO,
                     PlaneId = rec.PlaneId,
                     PlaneName = rec.Planes.PlaneName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                }).ToList();
+                    DateImplement = rec.DateImplement
+                })
+                .ToList();
             }
         }
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -69,7 +74,9 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 {
                     Id = order.Id,
                     PlaneId = order.PlaneId,
-                    PlaneName = order.Planes.PlaneName,
+                    ClientId = order.ClientId,
+                    ClientFIO = context.Clients.Include(x => x.Orders).FirstOrDefault(x => x.Id == order.ClientId).FIO,
+                    PlaneName = context.Planes.FirstOrDefault(rec => rec.Id == order.PlaneId)?.PlaneName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
@@ -85,6 +92,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 Order order = new Order
                 {
                     PlaneId = model.PlaneId,
+                    ClientId = (int)model.ClientId,
                     Count = model.Count,
                     Sum = model.Sum,
                     Status = model.Status,
@@ -107,6 +115,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                     throw new Exception("Элемент не найден");
                 }
                 element.PlaneId = model.PlaneId;
+                element.ClientId = (int)model.ClientId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;

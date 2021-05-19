@@ -1,4 +1,5 @@
 ﻿using AirCraftFactoryListImplement.Models;
+using AirсraftFactoryListImplement.Models;
 using System;
 using System.Collections.Generic;
 
@@ -11,17 +12,19 @@ namespace AirCraftFactoryListImplement
         public List<Order> Orders { get; set; }
         public List<Plane> Planes { get; set; }
         public List<Warehouse> Warehouses { get; set; }
+        public List<Client> Clients { get; set; }
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
             Planes = new List<Plane>();
             Warehouses = new List<Warehouse>(); 
+            Clients = new List<Client>();
         }
         public static DataListSingleton GetInstance()
         {
-            if (instance == null)  instance = new DataListSingleton();
-            
+            if (instance == null) instance = new DataListSingleton();
+
             return instance;
         }
     }

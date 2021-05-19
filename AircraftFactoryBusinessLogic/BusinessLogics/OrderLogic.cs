@@ -4,7 +4,6 @@ using AircraftFactoryBusinessLogic.Interfaces;
 using AircraftFactoryBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AircraftFactoryBusinessLogic.BusinessLogics
 {
@@ -36,10 +35,11 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Insert(new OrderBindingModel
             {
                 PlaneId = model.PlaneId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
-                Status = OrderStatus.Принят
+                Status = OrderStatus.Принят,
             });
         }
         public void TakeOrderInWork(ChangeStatusBindingModel model)
@@ -62,6 +62,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PlaneId = order.PlaneId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -84,6 +85,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PlaneId = order.PlaneId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -106,6 +108,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PlaneId = order.PlaneId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -114,5 +117,4 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             });
         }
     }
-
 }

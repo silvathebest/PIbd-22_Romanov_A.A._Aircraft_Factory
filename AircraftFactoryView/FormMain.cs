@@ -39,7 +39,8 @@ namespace AircraftFactoryView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 }
             }
@@ -182,6 +183,11 @@ namespace AircraftFactoryView
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
+            form.ShowDialog();
         }
     }
 }
