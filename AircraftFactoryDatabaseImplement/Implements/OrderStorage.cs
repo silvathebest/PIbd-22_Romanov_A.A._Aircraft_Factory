@@ -40,8 +40,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             {
                 return context.Orders
                 .Include(rec => rec.Planes)
-                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -72,7 +71,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
                     PlaneId = order.PlaneId,
                     PlaneName = order.Planes.PlaneName,
                     Count = order.Count,
-                    Sum = order.Sum,    
+                    Sum = order.Sum,
                     Status = order.Status,
                     DateCreate = order.DateCreate,
                     DateImplement = order.DateImplement,
