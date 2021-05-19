@@ -13,10 +13,14 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
     {
         private readonly IPlaneStorage _planeStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IPlaneStorage planeStorage, IOrderStorage orderStorage)
+        private readonly IComponentStorage _componentStorage;
+        private readonly IWarehouseStorage _warehouseStorage;
+        public ReportLogic(IPlaneStorage planeStorage, IOrderStorage orderStorage, IComponentStorage componentStorage, IWarehouseStorage warehouseStorage)
         {
             _planeStorage = planeStorage;
             _orderStorage = orderStorage;
+            _componentStorage = componentStorage;
+            _warehouseStorage = warehouseStorage;
         }
         /// <summary>
         /// Получение списка компонент с указанием, в каких изделиях используются
@@ -64,6 +68,40 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
                 Status = x.Status
             }).ToList();
         }
+
+        public List<ReportWarehouseComponentViewModel> GetWarehouseComponent()
+        {
+            var warehouses = _warehouseStorage.GetFullList();
+            var list = new List<ReportWarehouseComponentViewModel>();
+            foreach (var warehouse in warehouses)
+            {
+                var record = new ReportWarehouseComponentViewModel
+                {
+                    WarehouseName = warehouse.WarehouseName,
+                    Components = new List<Tuple<string, int>>(),
+                    TotalCount = 0
+                };
+                foreach (var component in warehouse.WarehouseComponents)
+                {
+                    record.Components.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
+                    record.TotalCount += component.Value.Item2;
+                }
+                list.Add(record);
+            }
+            return list;
+        }
+        public List<ReportOrdersAllDatesViewModel> GetOrdersForAllDates()
+        {
+            return _orderStorage.GetFullList()
+                .GroupBy(order => order.DateCreate.ToShortDateString())
+                .Select(rec => new ReportOrdersAllDatesViewModel
+                {
+                    Date = Convert.ToDateTime(rec.Key),
+                    Count = rec.Count(),
+                    Sum = rec.Sum(order => order.Sum)
+                })
+                .ToList();
+        }
         /// <summary>
         /// Сохранение компонент в файл-Word
         /// </summary>
@@ -105,6 +143,35 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
                 Orders = GetOrders(model)
+            });
+        }
+        public void SaveWarehousesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateDocWarehouse(new WordInfoWarehouse
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                Warehouses = _warehouseStorage.GetFullList()
+            });
+        }
+        public void SaveWarehousesComponentsToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDocWarehouse(new ExcelInfoWarehouse
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                WarehouseComponents = GetWarehouseComponent()
+            });
+        }
+
+        [Obsolete]
+        public void SaveOrdersAllDatesToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDocOrdersAllDates(new PdfInfoOrdersAllDates
+            {
+                FileName = model.FileName,
+                Title = "Список заказов",
+                Orders = GetOrdersForAllDates()
             });
         }
     }

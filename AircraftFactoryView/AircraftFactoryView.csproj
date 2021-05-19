@@ -257,6 +257,18 @@
     <Compile Include="FormPlanes.Designer.cs">
       <DependentUpon>FormPlanes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportOrdersAllDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportOrdersAllDates.Designer.cs">
+      <DependentUpon>FormReportOrdersAllDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents .Designer.cs">
+      <DependentUpon>FormReportWarehouseComponents .cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,7 +286,7 @@
     </Compile>
     <Compile Include="FormWarehouses.Designer.cs">
       <DependentUpon>FormWarehouses.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="FormReportPlaneComponents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +320,12 @@
     <EmbeddedResource Include="FormPlanes.resx">
       <DependentUpon>FormPlanes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportOrdersAllDates.resx">
+      <DependentUpon>FormReportOrdersAllDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportWarehouseComponents .resx">
+      <DependentUpon>FormReportWarehouseComponents .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWarehouse.resx">
       <DependentUpon>FormWarehouse.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,7 +334,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWarehouses.resx">
       <DependentUpon>FormWarehouses.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportPlaneComponents.resx">
       <DependentUpon>FormReportPlaneComponents.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,12 +348,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="ReportAllDates.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.ComponentViewModel.datasource" />
     <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.PlaneViewModel.datasource" />
+    <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.ReportOrdersAllDatesViewModel.datasource" />
     <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
     <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.ReportPlaneComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.ReportWarehouseComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\AircraftFactoryBusinessLogic.ViewModels.WarehouseViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

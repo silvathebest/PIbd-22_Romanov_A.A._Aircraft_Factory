@@ -57,6 +57,56 @@ order.PlaneName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToSt
             renderer.RenderDocument();
             renderer.PdfDocument.Save(info.FileName);
         }
+
+        [System.Obsolete]
+        public static void CreateDocOrdersAllDates(PdfInfoOrdersAllDates info)
+        {
+            Document document = new Document();
+            DefineStyles(document);
+
+            Section section = document.AddSection();
+
+            Paragraph paragraph = section.AddParagraph(info.Title);
+            paragraph.Format.SpaceAfter = "1cm";
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            paragraph.Style = "NormalTitle";
+
+            var table = document.LastSection.AddTable();
+            List<string> columns = new List<string> { "6cm", "6cm", "5cm" };
+            foreach (var elem in columns)
+            {
+                table.AddColumn(elem);
+            }
+
+            CreateRow(new PdfRowParameters
+            {
+                Table = table,
+                Texts = new List<string> { "Дата", "Количество заказов", "Сумма" },
+                Style = "NormalTitle",
+                ParagraphAlignment = ParagraphAlignment.Center
+            });
+
+            foreach (var order in info.Orders)
+            {
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { order.Date.ToShortDateString(),
+                        order.Count.ToString(), order.Sum.ToString()},
+                    Style = "Normal",
+                    ParagraphAlignment = ParagraphAlignment.Left
+                });
+            }
+
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
+            {
+                Document = document
+            };
+
+            renderer.RenderDocument();
+            renderer.PdfDocument.Save(info.FileName);
+        }
+
         /// <summary>
         /// Создание стилей для документа
         /// </summary>

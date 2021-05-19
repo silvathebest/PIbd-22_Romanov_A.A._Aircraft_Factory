@@ -45,6 +45,9 @@ namespace AircraftFactoryView
             this.списокКомпонентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.компонентыПоИзделиямToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокСкладовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокСкладовToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +56,7 @@ namespace AircraftFactoryView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(0, 33);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.Size = new System.Drawing.Size(1025, 460);
@@ -62,7 +65,7 @@ namespace AircraftFactoryView
             // buttonCreateOrder
             // 
             this.buttonCreateOrder.Location = new System.Drawing.Point(1048, 59);
-            this.buttonCreateOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreateOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
             this.buttonCreateOrder.Size = new System.Drawing.Size(201, 28);
             this.buttonCreateOrder.TabIndex = 1;
@@ -73,7 +76,7 @@ namespace AircraftFactoryView
             // buttonTakeOrderInWork
             // 
             this.buttonTakeOrderInWork.Location = new System.Drawing.Point(1048, 122);
-            this.buttonTakeOrderInWork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTakeOrderInWork.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
             this.buttonTakeOrderInWork.Size = new System.Drawing.Size(201, 28);
             this.buttonTakeOrderInWork.TabIndex = 2;
@@ -84,7 +87,7 @@ namespace AircraftFactoryView
             // buttonOrderReady
             // 
             this.buttonOrderReady.Location = new System.Drawing.Point(1048, 181);
-            this.buttonOrderReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOrderReady.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOrderReady.Name = "buttonOrderReady";
             this.buttonOrderReady.Size = new System.Drawing.Size(201, 28);
             this.buttonOrderReady.TabIndex = 3;
@@ -95,7 +98,7 @@ namespace AircraftFactoryView
             // buttonPayOrder
             // 
             this.buttonPayOrder.Location = new System.Drawing.Point(1048, 236);
-            this.buttonPayOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPayOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(201, 28);
             this.buttonPayOrder.TabIndex = 4;
@@ -106,7 +109,7 @@ namespace AircraftFactoryView
             // buttonRefresh
             // 
             this.buttonRefresh.Location = new System.Drawing.Point(1048, 302);
-            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(201, 28);
             this.buttonRefresh.TabIndex = 5;
@@ -133,66 +136,91 @@ namespace AircraftFactoryView
             this.изделияToolStripMenuItem,
             this.warehouseToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
             // компонентыToolStripMenuItem
             // 
             this.компонентыToolStripMenuItem.Name = "компонентыToolStripMenuItem";
-            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.компонентыToolStripMenuItem.Text = "Компоненты";
             this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.КомпонентыToolStripMenuItem_Click);
             // 
             // изделияToolStripMenuItem
             // 
             this.изделияToolStripMenuItem.Name = "изделияToolStripMenuItem";
-            this.изделияToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.изделияToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.изделияToolStripMenuItem.Text = "Изделия";
             this.изделияToolStripMenuItem.Click += new System.EventHandler(this.ИзделияToolStripMenuItem_Click);
             // 
             // warehouseToolStripMenuItem
             // 
             this.warehouseToolStripMenuItem.Name = "warehouseToolStripMenuItem";
-            this.warehouseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.warehouseToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.warehouseToolStripMenuItem.Text = "Склады";
             this.warehouseToolStripMenuItem.Click += new System.EventHandler(this.warehouseToolStripMenuItem_Click);
             // 
             // warehouseFillToolStripMenuItem
             // 
             this.warehouseFillToolStripMenuItem.Name = "warehouseFillToolStripMenuItem";
-            this.warehouseFillToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.warehouseFillToolStripMenuItem.Size = new System.Drawing.Size(162, 24);
             this.warehouseFillToolStripMenuItem.Text = "Пополнение склада";
             this.warehouseFillToolStripMenuItem.Click += new System.EventHandler(this.warehouseFillToolStripMenuItem_Click);
+            // 
             // отчетыToolStripMenuItem
             // 
             this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.списокКомпонентовToolStripMenuItem,
             this.компонентыПоИзделиямToolStripMenuItem,
-            this.списокЗаказовToolStripMenuItem});
+            this.списокЗаказовToolStripMenuItem,
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem,
+            this.списокСкладовToolStripMenuItem,
+            this.списокСкладовToolStripMenuItem1});
             this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
-            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(73, 26);
             this.отчетыToolStripMenuItem.Text = "Отчеты";
             // 
             // списокКомпонентовToolStripMenuItem
             // 
             this.списокКомпонентовToolStripMenuItem.Name = "списокКомпонентовToolStripMenuItem";
-            this.списокКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.списокКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
             this.списокКомпонентовToolStripMenuItem.Text = "Список изделий";
             this.списокКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
             // компонентыПоИзделиямToolStripMenuItem
             // 
             this.компонентыПоИзделиямToolStripMenuItem.Name = "компонентыПоИзделиямToolStripMenuItem";
-            this.компонентыПоИзделиямToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.компонентыПоИзделиямToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
             this.компонентыПоИзделиямToolStripMenuItem.Text = "Компоненты по изделиям";
             this.компонентыПоИзделиямToolStripMenuItem.Click += new System.EventHandler(this.ComponentProductsToolStripMenuItem_Click);
             // 
             // списокЗаказовToolStripMenuItem
             // 
             this.списокЗаказовToolStripMenuItem.Name = "списокЗаказовToolStripMenuItem";
-            this.списокЗаказовToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.списокЗаказовToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
             this.списокЗаказовToolStripMenuItem.Text = "Список заказов";
             this.списокЗаказовToolStripMenuItem.Click += new System.EventHandler(this.OrdersToolStripMenuItem_Click);
+            // 
+            // списокЗаказовЗаВсеДатыToolStripMenuItem
+            // 
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem.Name = "списокЗаказовЗаВсеДатыToolStripMenuItem";
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem.Text = "Список заказов за все даты";
+            this.списокЗаказовЗаВсеДатыToolStripMenuItem.Click += new System.EventHandler(this.списокЗаказовЗаВсеДатыToolStripMenuItem_Click);
+            // 
+            // списокСкладовToolStripMenuItem
+            // 
+            this.списокСкладовToolStripMenuItem.Name = "списокСкладовToolStripMenuItem";
+            this.списокСкладовToolStripMenuItem.Size = new System.Drawing.Size(323, 26);
+            this.списокСкладовToolStripMenuItem.Text = "Список складов по компонентам";
+            this.списокСкладовToolStripMenuItem.Click += new System.EventHandler(this.списокСкладовПоКомпонентамToolStripMenuItem_Click);
+            // 
+            // списокСкладовToolStripMenuItem1
+            // 
+            this.списокСкладовToolStripMenuItem1.Name = "списокСкладовToolStripMenuItem1";
+            this.списокСкладовToolStripMenuItem1.Size = new System.Drawing.Size(323, 26);
+            this.списокСкладовToolStripMenuItem1.Text = "Список складов";
+            this.списокСкладовToolStripMenuItem1.Click += new System.EventHandler(this.списокСкладовToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -207,7 +235,7 @@ namespace AircraftFactoryView
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "Авиастроительный завод";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -237,5 +265,8 @@ namespace AircraftFactoryView
         private System.Windows.Forms.ToolStripMenuItem списокКомпонентовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem компонентыПоИзделиямToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокЗаказовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокЗаказовЗаВсеДатыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem1;
     }
 }
