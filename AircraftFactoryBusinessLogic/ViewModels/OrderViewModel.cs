@@ -30,7 +30,7 @@ namespace AircraftFactoryBusinessLogic.ViewModels
         [DataMember]
         public int PlaneId { get; set; }
         [DataMember]
-        [Column(title: "Изделие", gridViewAutoSize: GridViewAutoSize.Fill)]
+        [Column(title: "Изделие", width: 150)]
         public string PlaneName { get; set; }
         [DataMember]
         [Column(title: "Количество", width: 100)]
