@@ -140,6 +140,54 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                     b.ToTable("PlaneComponents");
                 });
 
+            modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResponsiblePerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Warehouses");
+                });
+
+            modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("WarehouseComponents");
+                });
+
             modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("AircraftFactoryDatabaseImplement.Models.Client", "Client")
@@ -166,6 +214,21 @@ namespace AircraftFactoryDatabaseImplement.Migrations
                     b.HasOne("AircraftFactoryDatabaseImplement.Models.Plane", "Plane")
                         .WithMany("PlaneComponents")
                         .HasForeignKey("PlaneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AircraftFactoryDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.HasOne("AircraftFactoryDatabaseImplement.Models.Component", "Component")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AircraftFactoryDatabaseImplement.Models.Warehouse", "Warehouse")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
