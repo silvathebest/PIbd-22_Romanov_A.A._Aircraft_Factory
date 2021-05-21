@@ -16,7 +16,9 @@ namespace AircraftFactoryBusinessLogic.BindingModels
         public int? Id { get; set; }
         [DataMember]
         public int? ClientId { get; set; }
+        [DataMember]
         public int PlaneId { get; set; }
+        [DataMember]
         public int? ImplementerId { get; set; }
         [DataMember]
         public string ClientFIO { get; set; }

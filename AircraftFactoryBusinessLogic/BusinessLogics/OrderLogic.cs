@@ -47,48 +47,43 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
         {
             lock (locker)
             {
-                var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
-
+                OrderViewModel order = _orderStorage.GetElement(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                });
                 if (order == null)
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
                 {
-                    throw new Exception("Заказ не в статусе \"Принят\"");
+                    throw new Exception("Заказ еще не принят");
                 }
-                if (order.ImplementerId.HasValue)
-                {
-                    throw new Exception("У заказа уже есть исполнитель");
-                }
-                _orderStorage.Update(new OrderBindingModel
+
+                var updateBindingModel = new OrderBindingModel
                 {
                     Id = order.Id,
                     PlaneId = order.PlaneId,
-                    ClientId = order.ClientId,
                     ImplementerId = model.ImplementerId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    DateImplement = DateTime.Now,
-                    Status = OrderStatus.Выполняется
-                });
+                    ClientId = order.ClientId
+                };
+
+                if (!_warehouseStorage.IsTaked(_planeStorage.GetElement
+                    (new PlaneBindingModel { Id = order.PlaneId }).PlaneComponents, order.Count))
+                {
+                    updateBindingModel.Status = OrderStatus.Требуются_материалы;
+                }
+                else
+                {
+                    updateBindingModel.DateImplement = DateTime.Now;
+                    updateBindingModel.Status = OrderStatus.Выполняется;
+
+                }
+                _orderStorage.Update(updateBindingModel);
             }
-            if (!_warehouseStorage.IsTaked(_planeStorage.GetElement(new PlaneBindingModel { Id = order.PlaneId }).PlaneComponents, order.Count))
-            {
-                throw new Exception("Недостаточно материалов");
-            }
-            _orderStorage.Update(new OrderBindingModel
-            {
-                Id = order.Id,
-                PlaneId = order.PlaneId,
-                ClientId = order.ClientId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {

@@ -98,7 +98,7 @@ namespace AircraftFactoryView
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникиToolStripMenuItem,
             this.warehouseFillToolStripMenuItem,
-            this.startWorkToolStripMenuItem
+            this.startWorkToolStripMenuItem,
             this.отчетыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";

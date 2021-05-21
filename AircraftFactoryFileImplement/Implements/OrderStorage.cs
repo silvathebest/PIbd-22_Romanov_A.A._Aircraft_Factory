@@ -91,7 +91,7 @@ namespace AircraftFactoryFileImplement.Implements
             Id = order.Id,
             ClientId = order.ClientId,
             PlaneId = order.PlaneId,
-            PlaneName = source.Plane.FirstOrDefault(rec => rec.Id == order.PlaneId)?.PlaneName,
+            PlaneName = source.Planes.FirstOrDefault(rec => rec.Id == order.PlaneId)?.PlaneName,
             ImplementerId = order.ImplementerId,
             ImplementerFIO = source.Implementers.FirstOrDefault(x => x.Id == order.ImplementerId)?.ImplementerFIO,
             Count = order.Count,

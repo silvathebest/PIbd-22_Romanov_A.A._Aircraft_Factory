@@ -302,23 +302,7 @@ namespace AircraftFactoryFileImplement
                 xDocument.Save(WarehouseFileName);
             }
         }
-        private void SaveClients()
-        {
-            if (Clients != null)
-            {
-                var xElement = new XElement("Clients");
-                foreach (var client in Clients)
-                {
-                    xElement.Add(new XElement("Client",
-                    new XAttribute("Id", client.Id),
-                    new XElement("FIO", client.FIO),
-                    new XElement("Email", client.Email),
-                    new XElement("Password", client.Password)));
-                }
-                XDocument xDocument = new XDocument(xElement);
-                xDocument.Save(ClientFileName);
-            }
-        }
+
         private void SaveImplementers()
         {
             if (Implementers != null)
