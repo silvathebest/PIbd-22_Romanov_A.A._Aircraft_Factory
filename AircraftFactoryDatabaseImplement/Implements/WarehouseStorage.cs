@@ -28,9 +28,9 @@ namespace AircraftFactoryDatabaseImplement.Implements
                         ResponsiblePerson = rec.ResponsiblePerson,
                         DateCreate = rec.DateCreate,
                         WarehouseComponents = rec.WarehouseComponents
-                            .ToDictionary(recStoreHouseMaterials => recStoreHouseMaterials.ComponentId,
-                            recStoreHouseMaterials => (recStoreHouseMaterials.Component?.ComponentName,
-                            recStoreHouseMaterials.Count))
+                            .ToDictionary(recWarehouseComponents => recWarehouseComponents.ComponentId,
+                            recWarehouseComponents => (recWarehouseComponents.Component?.ComponentName,
+                            recWarehouseComponents.Count))
                     })
                     .ToList();
             }

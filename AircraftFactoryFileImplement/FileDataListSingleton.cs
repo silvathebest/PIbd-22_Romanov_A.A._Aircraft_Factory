@@ -66,6 +66,7 @@ namespace AircraftFactoryFileImplement
             SaveOrders();
             SavePlanes();
             SaveWarehouses();
+            SaveClients();
         }
 
         private List<Component> LoadComponents()
@@ -99,6 +100,7 @@ namespace AircraftFactoryFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         PlaneId = Convert.ToInt32(elem.Element("PlaneId").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToInt32(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
@@ -194,6 +196,7 @@ namespace AircraftFactoryFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("PlaneId", order.PlaneId),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
@@ -255,6 +258,23 @@ namespace AircraftFactoryFileImplement
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(WarehouseFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("FIO", client.FIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
     }

@@ -1,0 +1,49 @@
+﻿@model AircraftFactoryBusinessLogic.ViewModels.WarehouseViewModel
+
+@{ ViewData["Title"] = "Edit"; }
+
+<h1>Изменить</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="WarehouseComponents" value="@Model.WarehouseComponents" />
+            <div class="form-group">
+                <label class="control-label" name="WarehouseName">Название</label>
+                <input class="form-control" name="WarehouseName" value="@Model.WarehouseName" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" name="ResponsiblePerson">ФИО ответственного</label>
+                <input class="form-control" name="ResponsiblePerson" value="@Model.ResponsiblePerson" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Компонент</th>
+                    <th>Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.WarehouseComponents)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Value.Item1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Value.Item2)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

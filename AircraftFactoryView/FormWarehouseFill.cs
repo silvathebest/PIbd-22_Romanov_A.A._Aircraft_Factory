@@ -88,7 +88,7 @@ namespace AircraftFactoryView
                 return;
             }
 
-            warehouseLogic.AddMaterial(new AddComponentsBindingModel
+            warehouseLogic.AddComponent(new AddComponentsBindingModel
             {
                 ComponentId = Convert.ToInt32(componentsComboBox.SelectedValue),
                 WarehouseId = Convert.ToInt32(warehouseComboBox.SelectedValue),

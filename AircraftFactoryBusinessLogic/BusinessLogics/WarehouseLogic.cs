@@ -64,7 +64,7 @@ namespace AircraftFactoryBusinessLogic.BusinessLogics
             _warehouseStorage.Delete(model);
         }
 
-        public void AddMaterial(AddComponentsBindingModel model)
+        public void AddComponent(AddComponentsBindingModel model)
         {
             WarehouseViewModel warehouse = _warehouseStorage.GetElement(new WarehouseBindingModel { Id = model.WarehouseId });
 

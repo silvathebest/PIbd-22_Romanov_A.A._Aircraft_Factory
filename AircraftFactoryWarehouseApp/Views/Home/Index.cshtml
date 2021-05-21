@@ -1,0 +1,50 @@
+﻿@model List<AircraftFactoryBusinessLogic.ViewModels.WarehouseViewModel>
+@{ ViewData["Title"] = "Home Page"; }
+
+<h1>Склады</h1>
+
+<hr />
+<div>
+    @{ if (Model == null)
+        {
+            <h3 class="display-4">Авторизируйтесь</h3> return;
+        }
+        <p>
+            <a asp-action="Create">Создать склад</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Название</th>
+                    <th>ФИО ответственного</th>
+                    <th>Дата создания</th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WarehouseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ResponsiblePerson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreate)
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Обновить</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table> }
+</div>

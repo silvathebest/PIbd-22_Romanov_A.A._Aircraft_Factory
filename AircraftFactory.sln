@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryFileImplemen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryDatabaseImplement", "AircraftFactoryDatabaseImplement\AircraftFactoryDatabaseImplement.csproj", "{B786D031-B136-4F4E-8B07-51D749CDD6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftFactoryRestApi", "AircraftFactoryRestApi\AircraftFactoryRestApi.csproj", "{7092F242-F0B0-4730-8E7A-A2C35F44FD56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryRestApi", "AircraftFactoryRestApi\AircraftFactoryRestApi.csproj", "{7092F242-F0B0-4730-8E7A-A2C35F44FD56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftFactoryClientApp", "AircraftFactoryClientApp\AircraftFactoryClientApp.csproj", "{BB314A75-4587-4E87-ACB1-7EB726EA452C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AircraftFactoryClientApp", "AircraftFactoryClientApp\AircraftFactoryClientApp.csproj", "{BB314A75-4587-4E87-ACB1-7EB726EA452C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftFactoryWarehouseApp", "AircraftFactoryWarehouseApp\AircraftFactoryWarehouseApp.csproj", "{713DE51F-4774-4E62-9D52-FAAD32C789AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{BB314A75-4587-4E87-ACB1-7EB726EA452C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB314A75-4587-4E87-ACB1-7EB726EA452C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB314A75-4587-4E87-ACB1-7EB726EA452C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713DE51F-4774-4E62-9D52-FAAD32C789AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713DE51F-4774-4E62-9D52-FAAD32C789AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713DE51F-4774-4E62-9D52-FAAD32C789AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713DE51F-4774-4E62-9D52-FAAD32C789AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

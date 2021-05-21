@@ -16,7 +16,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             using (var context = new AircraftFactoryDatabase())
             {
-                return context.Orders.Include(rec => rec.Planes)
+                return context.Orders.Include(rec => rec.Planes).Include(rec => rec.Client)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -40,23 +40,24 @@ namespace AircraftFactoryDatabaseImplement.Implements
             }
             using (var context = new AircraftFactoryDatabase())
             {
-                return context.Orders
-                .Include(rec => rec.Planes)
-                .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
-                .Select(rec => new OrderViewModel
-                {
-                    Id = rec.Id,
-                    ClientId = rec.ClientId,
-                    ClientFIO = context.Clients.Include(x => x.Orders).FirstOrDefault(x => x.Id == rec.ClientId).FIO,
-                    PlaneId = rec.PlaneId,
-                    PlaneName = rec.Planes.PlaneName,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement
-                })
-                .ToList();
+                return context.Orders.Include(rec => rec.Planes).Include(rec => rec.Client)
+               .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+               (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
+               >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+               (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+               .Select(rec => new OrderViewModel
+               {
+                   Id = rec.Id,
+                   ClientId = rec.ClientId,
+                   ClientFIO = context.Clients.Include(x => x.Orders).FirstOrDefault(x => x.Id == rec.ClientId).FIO,
+                   PlaneId = rec.PlaneId,
+                   PlaneName = rec.Planes.PlaneName,
+                   Count = rec.Count,
+                   Sum = rec.Sum,
+                   Status = rec.Status,
+                   DateCreate = rec.DateCreate,
+                   DateImplement = rec.DateImplement
+               }).ToList();
             }
         }
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -67,7 +68,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
             }
             using (var context = new AircraftFactoryDatabase())
             {
-                var order = context.Orders.Include(rec => rec.Planes)
+                var order = context.Orders.Include(rec => rec.Planes).Include(rec => rec.Client)
                 .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
@@ -89,19 +90,7 @@ namespace AircraftFactoryDatabaseImplement.Implements
         {
             using (var context = new AircraftFactoryDatabase())
             {
-                Order order = new Order
-                {
-                    PlaneId = model.PlaneId,
-                    ClientId = (int)model.ClientId,
-                    Count = model.Count,
-                    Sum = model.Sum,
-                    Status = model.Status,
-                    DateCreate = model.DateCreate,
-                    DateImplement = model.DateImplement,
-                };
-                context.Orders.Add(order);
-                context.SaveChanges();
-                CreateModel(model, order);
+                context.Orders.Add(CreateModel(model, new Order()));
                 context.SaveChanges();
             }
         }
@@ -114,13 +103,6 @@ namespace AircraftFactoryDatabaseImplement.Implements
                 {
                     throw new Exception("Элемент не найден");
                 }
-                element.PlaneId = model.PlaneId;
-                element.ClientId = (int)model.ClientId;
-                element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
-                element.DateCreate = model.DateCreate;
-                element.DateImplement = model.DateImplement;
                 CreateModel(model, element);
                 context.SaveChanges();
             }
@@ -143,29 +125,13 @@ namespace AircraftFactoryDatabaseImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            if (model == null)
-            {
-                return null;
-            }
-
-            using (var context = new AircraftFactoryDatabase())
-            {
-                Plane element = context.Planes.FirstOrDefault(rec => rec.Id == model.PlaneId);
-                if (element != null)
-                {
-                    if (element.Orders == null)
-                    {
-                        element.Orders = new List<Order>();
-                    }
-                    element.Orders.Add(order);
-                    context.Planes.Update(element);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Элемент не найден");
-                }
-            }
+            order.ClientId = (int)model.ClientId;
+            order.PlaneId = model.PlaneId;
+            order.Count = model.Count;
+            order.Sum = model.Sum;
+            order.Status = model.Status;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
             return order;
         }
     }
