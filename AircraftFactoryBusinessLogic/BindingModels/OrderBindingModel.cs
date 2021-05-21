@@ -17,6 +17,7 @@ namespace AircraftFactoryBusinessLogic.BindingModels
         [DataMember]
         public int? ClientId { get; set; }
         public int PlaneId { get; set; }
+        public int? ImplementerId { get; set; }
         [DataMember]
         public string ClientFIO { get; set; }
         [DataMember]
@@ -33,6 +34,8 @@ namespace AircraftFactoryBusinessLogic.BindingModels
         public DateTime? DateFrom { get; set; }
         [DataMember]
         public DateTime? DateTo { get; set; }
+        [DataMember]
+        public bool? FreeOrders { get; set; }
     }
 
 }

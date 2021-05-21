@@ -1,4 +1,5 @@
 ﻿using AircraftFactoryBusinessLogic.BindingModels;
+using AircraftFactoryBusinessLogic.Enums;
 using AircraftFactoryBusinessLogic.Interfaces;
 using AircraftFactoryBusinessLogic.ViewModels;
 using AirCraftFactoryListImplement.Models;
@@ -45,15 +46,19 @@ namespace AirCraftFactoryListImplement.Implements
 
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
-            if (model == null) return null;
-
+            if (model == null)
+            {
+                return null;
+            }
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (Order order in source.Orders)
             {
-                if (((model.ClientId.HasValue && order.ClientId == model.ClientId) ||
-                !model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date
-                && order.DateCreate.Date <= model.DateTo.Value.Date))
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && order.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !order.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
+
                 {
                     result.Add(CreateModel(order));
                 }
@@ -104,6 +109,7 @@ namespace AirCraftFactoryListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PlaneId = model.PlaneId;
+            order.ImplementerId = model.ImplementerId;
             order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -131,12 +137,22 @@ namespace AirCraftFactoryListImplement.Implements
                     clientFio = client.FIO;
                 }
             }
+            string implementerFIO = null;
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.ImplementerId)
+                {
+                    implementerFIO = implementer.ImplementerFIO;
+                }
+            }
 
             return new OrderViewModel
             {
                 Id = order.Id,
                 PlaneId = order.PlaneId,
                 PlaneName = planeName,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

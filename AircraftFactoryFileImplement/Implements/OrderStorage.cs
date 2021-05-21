@@ -21,7 +21,13 @@ namespace AircraftFactoryFileImplement.Implements
         public List<OrderViewModel> GetFullList() => source.Orders.Select(CreateModel).ToList();
 
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model) => model == null ?
-            null : source.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(CreateModel).ToList();
+            null : source.Orders.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+                 .Select(CreateModel).ToList();
+
 
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -71,6 +77,7 @@ namespace AircraftFactoryFileImplement.Implements
         {
             order.ClientId = (int)model.ClientId;
             order.PlaneId = model.PlaneId;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -84,7 +91,9 @@ namespace AircraftFactoryFileImplement.Implements
             Id = order.Id,
             ClientId = order.ClientId,
             PlaneId = order.PlaneId,
-            PlaneName = source.Planes.FirstOrDefault(rec => rec.Id == order.PlaneId)?.PlaneName,
+            PlaneName = source.Plane.FirstOrDefault(rec => rec.Id == order.PlaneId)?.PlaneName,
+            ImplementerId = order.ImplementerId,
+            ImplementerFIO = source.Implementers.FirstOrDefault(x => x.Id == order.ImplementerId)?.ImplementerFIO,
             Count = order.Count,
             Sum = order.Sum,
             Status = order.Status,

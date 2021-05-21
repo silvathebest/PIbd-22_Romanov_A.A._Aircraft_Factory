@@ -21,6 +21,7 @@ namespace AircraftFactoryDatabaseImplement
         public virtual DbSet<Warehouse> Warehouses { set; get; }
         public virtual DbSet<WarehouseComponent> WarehouseComponents { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
+        public virtual DbSet<Implementer> Implementers { set; get; }
 
     }
 }
